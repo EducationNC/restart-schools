@@ -18,6 +18,8 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
     <!-- <script src='https://unpkg.com/simple-statistics@5.2.0/dist/simple-statistics.js' /> -->
+    <script src="data/restart-schools.geojson"></script>
+
 
     <style>
      #append {
@@ -88,6 +90,16 @@
                 return "#5656";
             }); 
         }
+
+        var schools = svg.append( "g" );
+
+        schools.selectAll( "path" )
+          .data( restartschools.features )
+          .enter()
+          .append( "path" )
+          .attr( "fill", "#900" )
+          .attr( "stroke", "#999" )
+          .attr( "d", geoPath );
 
         })
 
