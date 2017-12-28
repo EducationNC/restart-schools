@@ -3,23 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Restart Schools</title>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300i,400,400i,700,900" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css" type="text/css">
-
+    <!-- d3 -->
     <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
-    <!-- <script src='https://unpkg.com/simple-statistics@5.2.0/dist/simple-statistics.js' /> -->
     <script src="data/restart-schools.geojson"></script>
 
+    
+
+
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
 
     <style>
      #append {
@@ -33,77 +38,117 @@
 
   </head>
   <body>
+    <div id="container" class="container">
+
+     
+
+        <div class="row">
+          <div class="col-lg-4">
+              <h1>Restart Schools Graphic</h1>
+            <div class="story">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in.</p>
+            </div>
+            <div id="trigger1" class="story">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in.</p>
+              </div>
+              <div class="story">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+              </div>
+              <div class="story">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                </div>
+                <div class="story">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                  </div>
+            </div>
+            <div class="col-lg-8" style="position:fixed;">
+                <div id="schools-map" class="story"></div>
+            </div>
+          </div>
+  </div><!--container-->
 
 
       <script>
 
         $(document).ready(function(){
+
+          //SCHOOLS MAP
           var width = window.innerWidth,
-        height = window.innerHeight;
+            height = window.innerHeight;
 
-        var svg = d3.select( "body" )
-          .append( "svg" )
-          .attr( "width", width )
-          .attr( "height", height );
+            var schools_svg = d3.select( "#schools-map" )
+              .append( "svg" )
+              .attr( "width", width )
+              .attr( "height", height );
+
+            var projection = d3.geoAlbers()
+            .center([7, 35.73])
+            .rotate([85.8,.5])
+            .scale(8000)
+            .translate([width / 2, height / 2]);
+
+            var geoPath = d3.geoPath()
+            .projection(projection);
+
+            var q = d3_queue.queue();
+            q
+            .defer(d3.json, "data/nc-counties.json")
+            .await(ready);
+
+            function ready(error, counties){
+
+            schools_svg.append("g")
+                .selectAll("path")
+                .data( topojson.feature(counties, counties.objects.counties).features)
+                .enter()
+                .append("path")
+                .attr( "d", geoPath )
+                .attr("class","county")
+                .attr( "fill", function(d){
+                    return "#5656";
+                }); 
+            }
+
+            var schools = schools_svg.append( "g" );
+
+            schools.selectAll( "path" )
+              .data( restartschools.features )
+              .enter()
+              .append( "path" )
+              .attr("class", "school")
+              .attr( "fill", "#900" )
+              .attr( "stroke", "#999" )
+              .attr( "d", geoPath );
+
+            schools.selectAll( "path" )
+              .data( restartschools.features )
+              .enter()
+              .append( "path" )
+              .attr("class", "school")
+              .attr( "fill", "#900" )
+              .attr( "stroke", "#999" )
+              .attr( "d", geoPath );
 
 
 
-        var projection = d3.geoAlbers()
-        .center([7, 35.73])
-        .rotate([85.8,0])
-        .scale(8000)
-        .translate([width / 2, height / 2]);
-
-        var geoPath = d3.geoPath()
-        .projection(projection);
-
-        var q = d3_queue.queue();
-        q
-        .defer(d3.json, "data/nc-counties.json")
-        .await(ready);
-
-        function ready(error, counties){
-
-        // var attribute = "gas_wells"; // alternative is "oil_wells"
-
-        // var breaks = ss.jenks(counties.objects.counties.geometries.map(function(d) { 
-        //     return d.properties[attribute]/d.properties.ALAND; 
-        // }), 5);
-
-        // breaks.shift(); // remove min value from breaks Array before applying to domain
-        // breaks.pop(); // same for max
-
-        // var colors = ["#feedde","#fdbe85","#fd8d3c","#e6550d","#a63603"];
-
-        // var jenks = d3.scale.threshold()
-        //     .domain(breaks)
-        //     .range(colors);
-
-        svg.append("g")
-            .selectAll("path")
-            .data( topojson.feature(counties, counties.objects.counties).features)
-            .enter()
-            .append("path")
-            .attr( "d", geoPath )
-            .attr("class","county")
-            .attr( "fill", function(d){
-                return "#5656";
-            }); 
-        }
-
-        var schools = svg.append( "g" );
-
-        schools.selectAll( "path" )
-          .data( restartschools.features )
-          .enter()
-          .append( "path" )
-          .attr( "fill", "#900" )
-          .attr( "stroke", "#999" )
-          .attr( "d", geoPath );
-
-        })
-
+            //scrollstory
+            $(function(){
+              $("#container").scrollStory({
+                itemfocus: function(ev, item){
+                  if (item.id === "trigger1"){
+                    $('.school').toggleClass('show');
+                  }
+                  
+            }
+            });
+            });
+        }); //doc ready
+       
 
     </script>
+        <!-- scrollstory -->
+        <script src="js/jquery.scrollstory.js"></script>
     </body>
     </html>
