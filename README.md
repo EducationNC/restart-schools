@@ -30,3 +30,5 @@ This graphic will be built directly into the WordPress CMS and tested outside of
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Other Credit
+- TopoJSON for N.C. counties from GitHub user [deldersveld](https://github.com/deldersveld/topojson/blob/master/countries/us-states/NC-37-north-carolina-counties.json).
+- Map built with help from [this d3 tutorial](http://duspviz.mit.edu/d3-workshop/mapping-data-with-d3/) from DUSPViz

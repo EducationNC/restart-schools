@@ -3,12 +3,95 @@
   <head>
     <meta charset="utf-8">
     <title>Restart Schools</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <!-- <script src='https://unpkg.com/simple-statistics@5.2.0/dist/simple-statistics.js' /> -->
+
+    <style>
+     #append {
+        padding: 0;
+        margin: 0;
+    }
+    .county {
+      stroke: #fff;
+    } 
+    </style>
+
   </head>
   <body>
 
-    <h3>Restart Schools</h3>
 
-    
+      <script>
 
-  </body>
-</html>
+        $(document).ready(function(){
+          var width = window.innerWidth,
+        height = window.innerHeight;
+
+        var svg = d3.select( "body" )
+          .append( "svg" )
+          .attr( "width", width )
+          .attr( "height", height );
+
+
+
+        var projection = d3.geoAlbers()
+        .center([7, 35.73])
+        .rotate([85.8,0])
+        .scale(8000)
+        .translate([width / 2, height / 2]);
+
+        var geoPath = d3.geoPath()
+        .projection(projection);
+
+        var q = d3_queue.queue();
+        q
+        .defer(d3.json, "data/nc-counties.json")
+        .await(ready);
+
+        function ready(error, counties){
+
+        // var attribute = "gas_wells"; // alternative is "oil_wells"
+
+        // var breaks = ss.jenks(counties.objects.counties.geometries.map(function(d) { 
+        //     return d.properties[attribute]/d.properties.ALAND; 
+        // }), 5);
+
+        // breaks.shift(); // remove min value from breaks Array before applying to domain
+        // breaks.pop(); // same for max
+
+        // var colors = ["#feedde","#fdbe85","#fd8d3c","#e6550d","#a63603"];
+
+        // var jenks = d3.scale.threshold()
+        //     .domain(breaks)
+        //     .range(colors);
+
+        svg.append("g")
+            .selectAll("path")
+            .data( topojson.feature(counties, counties.objects.counties).features)
+            .enter()
+            .append("path")
+            .attr( "d", geoPath )
+            .attr("class","county")
+            .attr( "fill", function(d){
+                return "#5656";
+            }); 
+        }
+
+        })
+
+
+    </script>
+    </body>
+    </html>
