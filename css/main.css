@@ -6,9 +6,30 @@ body{
 
 .school {
   transition: width 2s;
-  
 }
-.show{
-  stroke:blue;
+.school-show{
+  stroke:rgb(163, 163, 179);
 }
 
+.county-show{
+  stroke-width:2px;
+}
+
+.text-wrapper{
+  margin:15vh 0 15vh 0;
+}
+
+
+.percent-table tr:hover{
+  background-color:red;
+}
+.percent-table tr:first-child{
+  background-color:initial;
+}
+
+.big-text-col{
+  z-index:999;
+}
+.county-highlight{
+  fill:blue;
+}
