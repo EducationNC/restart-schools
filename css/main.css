@@ -3,6 +3,11 @@ body{
   font-size:1.5em;
   line-height:1.6em;
 }
+p{
+  font-size: 1.4em;
+  line-height: 2.1em;
+}
+
 
 .school {
   transition: width 2s;
@@ -35,4 +40,11 @@ body{
 }
 #schools-map svg{
   margin-left:400;
+}
+.map-link{
+  border-bottom:2px solid #be3b3b;
+}
+.map-link:hover{
+  color: #be3b3b;
+  cursor:pointer;
 }
