@@ -48,3 +48,7 @@ p{
   color: #be3b3b;
   cursor:pointer;
 }
+.fixed{
+  position:fixed;
+  top:0;
+}
