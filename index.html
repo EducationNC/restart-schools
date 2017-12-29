@@ -36,7 +36,27 @@
     } 
 
     .bar {
-  fill: steelblue;
+	fill: #6F257F;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.x path {
+	display: none;
+}
+.toolTip {
+	position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
 }
 
 .bar:hover {
@@ -93,7 +113,8 @@
                 <div id="schools-map" class="story"></div>
             </div>
             <div id="bar-chart" class="story">
-                <svg width="960" height="500"></svg>
+              <svg width="960" height="500"></svg>
+
             </div>
           </div>
   </div><!--container-->
@@ -166,48 +187,51 @@
             //BASIC BAR CHART FROM BOSTOCK
 
             var bar_svg = d3.select("#bar-chart svg"),
-                margin = {top: 20, right: 20, bottom: 30, left: 40},
-                width = +bar_svg.attr("width") - margin.left - margin.right,
-                height = +bar_svg.attr("height") - margin.top - margin.bottom;
-
-            var x = d3.scaleBand().rangeRound([0, width]),
-                y = d3.scaleLinear().rangeRound([height, 0]);
-
+            bar_margin = {top: 20, right: 20, bottom: 30, left: 80},
+            bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
+            bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
+          
+            // var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+              
+            var bar_x = d3.scaleLinear().range([0, bar_width]);
+            var bar_y = d3.scaleBand().range([bar_height, 0]);
+            
             var g = bar_svg.append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            d3.tsv("data/data.tsv", function(d) {
-              d.frequency = +d.frequency;
-              return d;
-            }, function(error, data) {
-              if (error) throw error;
-
-              x.domain(data.map(function(d) { return d.letter; }));
-              y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
-              g.append("g")
-                  .attr("class", "axis axis--x")
-                  .attr("transform", "translate(0," + height + ")")
-                  .call(d3.axisBottom(x));
-
-              g.append("g")
-                  .attr("class", "axis axis--y")
-                  .call(d3.axisLeft(y).ticks(5, "%"))
-                .append("text")
-                  .attr("transform", "rotate(-90)")
-                  .attr("y", 6)
-                  .attr("dy", "0.71em")
-                  .attr("text-anchor", "end")
-                  .text("Frequency");
-
-              g.selectAll(".bar")
-                .data(data)
-                .enter().append("rect")
-                  .attr("class", "bar")
-                  .attr("y", function(d) { return x(d.letter); })
-                  .attr("x", 0)
-                  .attr("height", 10)
-                  .attr("width", function(d) { return height - y(d.frequency); });
+                .attr("transform", "translate(" + bar_margin.left + "," + bar_margin.top + ")");
+              
+            d3.json("data/data.json", function(error, data) {
+                if (error) throw error;
+              
+                data.sort(function(a, b) { return a.value - b.value; });
+              
+                bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
+                bar_y.domain(data.map(function(d) { return d.area; })).padding(0.1);
+            
+                g.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + bar_height + ")")
+                    .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseInt(d / 1000); }).tickSizeInner([-bar_height]));
+            
+                g.append("g")
+                    .attr("class", "y axis")
+                    .call(d3.axisLeft(bar_y));
+            
+                g.selectAll(".bar")
+                    .data(data)
+                  .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", 0)
+                    .attr("height", bar_y.bandwidth())
+                    .attr("y", function(d) { return bar_y(d.area); })
+                    .attr("width", function(d) { return bar_x(d.value); });
+                    // .on("mousemove", function(d){
+                    //     tooltip
+                    //       .style("left", d3.event.pageX - 50 + "px")
+                    //       .style("top", d3.event.pageY - 70 + "px")
+                    //       .style("display", "inline-block")
+                    //       .html((d.area) + "<br>" + "£" + (d.value));
+                    // })
+                    // .on("mouseout", function(d){ tooltip.style("display", "none");});
             });
 
             //SCROLLSTORY
