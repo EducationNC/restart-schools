@@ -114,20 +114,28 @@
               </div>
               <div id="trigger2" class="story text-wrapper">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
-                </div>
-                <div class="story text-wrapper">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
-                  </div>
-            </div>
+              </div>
+              <div class="story text-wrapper">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+              </div>
+              <div id="bar-chart" class="story">
+                  <svg width="400" height="200"></svg>
+              </div>
+              <div class="story text-wrapper">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+              </div>
+              <div class="story text-wrapper">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+              </div>
+            </div><!--.col-lg-4-->
             <div class="col-lg-8" style="position:fixed;">
-                <div id="schools-map" class="story"></div>
+                <div id="schools-map" class="story">
+                  <svg style="margin-left:400;"></svg>
+                </div>
             </div>
-            <div id="bar-chart" class="story">
-              <svg width="960" height="500"></svg>
-
-            </div>
+           
             <div id="line-chart" class="story">
-                <svg width="960" height="500"></svg>
+                <svg width="400" height="200"></svg>
   
               </div>
           </div>
@@ -139,18 +147,17 @@
         $(document).ready(function(){
 
           //SCHOOLS MAP
-          var width = window.innerWidth,
+          var width = window.innerWidth-300,
             height = window.innerHeight;
 
-            var schools_svg = d3.select( "#schools-map" )
-              .append( "svg" )
+            var schools_svg = d3.select( "#schools-map svg" )
               .attr( "width", width )
               .attr( "height", height );
 
             var projection = d3.geoAlbers()
             .center([7, 35.73])
             .rotate([85.8,.5])
-            .scale(8000)
+            .scale(6000)
             .translate([width / 2, height / 2]);
 
             var geoPath = d3.geoPath()

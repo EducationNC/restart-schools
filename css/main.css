@@ -33,3 +33,6 @@ body{
 .county-highlight{
   fill:blue;
 }
+#schools-map svg{
+  margin-left:400;
+}
