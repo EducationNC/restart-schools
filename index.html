@@ -35,37 +35,47 @@
       stroke: #fff;
     } 
 
-    .bar {
-	fill: #6F257F;
-}
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #D4D8DA;
-  stroke-width: 1px;
-  shape-rendering: crispEdges;
-}
-.x path {
-	display: none;
-}
-.toolTip {
-	position: absolute;
-  display: none;
-  min-width: 80px;
-  height: auto;
-  background: none repeat scroll 0 0 #ffffff;
-  border: 1px solid #6F257F;
-  padding: 14px;
-  text-align: center;
-}
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 2px;
+        shape-rendering:crispEdges;
+      }
+      svg{
+        shape-rendering:crispEdges;
+      }
 
-.bar:hover {
-  fill: brown;
-}
+          .bar {
+        fill: #6F257F;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #D4D8DA;
+        stroke-width: 1px;
+        shape-rendering: crispEdges;
+      }
+      .x path {
+        display: none;
+      }
+      .toolTip {
+        position: absolute;
+        display: none;
+        min-width: 80px;
+        height: auto;
+        background: none repeat scroll 0 0 #ffffff;
+        border: 1px solid #6F257F;
+        padding: 14px;
+        text-align: center;
+      }
 
-.axis--x path {
-  display: none;
-}
+      .bar:hover {
+        fill: brown;
+      }
+
+      .axis--x path {
+        display: none;
+      }
     </style>
 
   </head>
@@ -116,6 +126,10 @@
               <svg width="960" height="500"></svg>
 
             </div>
+            <div id="line-chart" class="story">
+                <svg width="960" height="500"></svg>
+  
+              </div>
           </div>
   </div><!--container-->
 
@@ -184,7 +198,7 @@
               .attr( "d", geoPath );
 
 
-            //BASIC BAR CHART FROM BOSTOCK
+            //BASIC BAR CHART - https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998
 
             var bar_svg = d3.select("#bar-chart svg"),
             bar_margin = {top: 20, right: 20, bottom: 30, left: 80},
@@ -232,6 +246,98 @@
                     //       .html((d.area) + "<br>" + "£" + (d.value));
                     // })
                     // .on("mouseout", function(d){ tooltip.style("display", "none");});
+            });
+
+
+            //BASIC LINE CHART
+            // set the dimensions and margins of the graph
+            var line_margin = {top: 20, right: 40, bottom: 30, left: 50},
+                line_width = 960 - line_margin.left - line_margin.right,
+                line_height = 500 - line_margin.top - line_margin.bottom;
+
+            // parse the date / time
+            var parseTime = d3.timeParse("%d-%b-%y");
+
+            // set the ranges
+            var line_x = d3.scaleTime().range([0, line_width]);
+            var line_y = d3.scaleLinear().range([line_height, 0]);
+
+            // define the 1st line
+            var valueline = d3.line()
+                .x(function(d) { return line_x(d.date); })
+                .y(function(d) { return line_y(d.close); });
+
+            // define the 2nd line
+            var valueline2 = d3.line()
+                .x(function(d) { return line_x(d.date); })
+                .y(function(d) { return line_y(d.open); });
+
+            // append the svg obgect to the body of the page
+            // appends a 'group' element to 'svg'
+            // moves the 'group' element to the top left margin
+            var line_svg = d3.select("#line-chart svg");
+
+            line_svg
+                .attr("width", line_width + line_margin.left + line_margin.right)
+                .attr("height", line_height + line_margin.top + line_margin.bottom)
+              .append("g")
+                .attr("transform",
+                      "translate(" + line_margin.left + "," + line_margin.top + ")");
+
+            // Get the data
+            d3.csv("data/data2.csv", function(error, data) {
+              if (error) throw error;
+
+              // format the data
+              data.forEach(function(d) {
+                  d.date = parseTime(d.date);
+                  d.close = +d.close;
+                  d.open = +d.open;
+              });
+
+              // Scale the range of the data
+              line_x.domain(d3.extent(data, function(d) { return d.date; }));
+              line_y.domain([0, d3.max(data, function(d) {
+                return Math.max(d.close, d.open); })]);
+
+              // Add the valueline path.
+              line_svg.append("path")
+                  .data([data])
+                  .attr("class", "line")
+                  .attr("d", valueline);
+
+              // Add the valueline2 path.
+              line_svg.append("path")
+                  .data([data])
+                  .attr("class", "line")
+                  .style("stroke", "red")
+                  .attr("d", valueline2);
+
+              // Add the X Axis
+              line_svg.append("g")
+                  .attr("class", "xaxis")
+                  .attr("transform", "translate(0," + line_height + ")")
+                  .call(d3.axisBottom(line_x));
+
+              // Add the Y Axis
+              line_svg.append("g")
+                  .attr("class", "yaxis")
+                  .call(d3.axisLeft(line_y));
+
+              line_svg.append("text")
+                  .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].open)+")")
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "start")
+                  .style("fill", "red")
+                  .text("Open");
+
+              line_svg.append("text")
+                  .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].close)+")")
+                  .attr("dy", ".35em")
+                  .attr("text-anchor", "start")
+                  .style("fill", "steelblue")
+                  .text("Close");
+
             });
 
             //SCROLLSTORY

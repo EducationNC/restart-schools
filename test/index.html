@@ -9,6 +9,11 @@
         .bar {
 	fill: #6F257F;
 }
+.line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 2px;
+      }
 .axis path,
 .axis line {
   fill: none;
@@ -36,64 +41,105 @@
 
 .axis--x path {
   display: none;
-}</style>
+}
+
+</style>
     </head>
     <body>
-            <div id="bar-chart" class="story">
-                    <svg width="960" height="500"></svg>
+            <div id="line-chart" class="story">
+                    <svg></svg>
       
                   </div>
         
         <script>
-                    //BASIC BAR CHART FROM BOSTOCK
+                    //BASIC LINE CHART
+            // set the dimensions and margins of the graph
+            var line_margin = {top: 20, right: 40, bottom: 30, left: 50},
+            line_width = 960 - line_margin.left - line_margin.right,
+            line_height = 500 - line_margin.top - line_margin.bottom;
 
-                    var bar_svg = d3.select("#bar-chart svg"),
-            bar_margin = {top: 20, right: 20, bottom: 30, left: 80},
-            bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
-            bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
-          
-            // var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-              
-            var bar_x = d3.scaleLinear().range([0, bar_width]);
-            var bar_y = d3.scaleBand().range([bar_height, 0]);
-            
-            var g = bar_svg.append("g")
-                .attr("transform", "translate(" + bar_margin.left + "," + bar_margin.top + ")");
-              
-            d3.json("data/data.json", function(error, data) {
-                if (error) throw error;
-              
-                data.sort(function(a, b) { return a.value - b.value; });
-              
-                bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
-                bar_y.domain(data.map(function(d) { return d.area; })).padding(0.1);
-            
-                g.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + bar_height + ")")
-                    .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseInt(d / 1000); }).tickSizeInner([-bar_height]));
-            
-                g.append("g")
-                    .attr("class", "y axis")
-                    .call(d3.axisLeft(bar_y));
-            
-                g.selectAll(".bar")
-                    .data(data)
-                  .enter().append("rect")
-                    .attr("class", "bar")
-                    .attr("x", 0)
-                    .attr("height", bar_y.bandwidth())
-                    .attr("y", function(d) { return bar_y(d.area); })
-                    .attr("width", function(d) { return bar_x(d.value); });
-                    // .on("mousemove", function(d){
-                    //     tooltip
-                    //       .style("left", d3.event.pageX - 50 + "px")
-                    //       .style("top", d3.event.pageY - 70 + "px")
-                    //       .style("display", "inline-block")
-                    //       .html((d.area) + "<br>" + "£" + (d.value));
-                    // })
-                    // .on("mouseout", function(d){ tooltip.style("display", "none");});
-            });
+        // parse the date / time
+        var parseTime = d3.timeParse("%d-%b-%y");
+
+        // set the ranges
+        var line_x = d3.scaleTime().range([0, line_width]);
+        var line_y = d3.scaleLinear().range([line_height, 0]);
+
+        // define the 1st line
+        var valueline = d3.line()
+            .x(function(d) { return line_x(d.date); })
+            .y(function(d) { return line_y(d.close); });
+
+        // define the 2nd line
+        var valueline2 = d3.line()
+            .x(function(d) { return line_x(d.date); })
+            .y(function(d) { return line_y(d.open); });
+
+        // append the svg obgect to the body of the page
+        // appends a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var line_svg = d3.select("#line-chart svg");
+
+        line_svg
+            .attr("width", line_width + line_margin.left + line_margin.right)
+            .attr("height", line_height + line_margin.top + line_margin.bottom)
+          .append("g")
+            .attr("transform",
+                  "translate(" + line_margin.left + "," + line_margin.top + ")");
+
+        // Get the data
+        d3.csv("data/data2.csv", function(error, data) {
+          if (error) throw error;
+
+          // format the data
+          data.forEach(function(d) {
+              d.date = parseTime(d.date);
+              d.close = +d.close;
+              d.open = +d.open;
+          });
+
+          // Scale the range of the data
+          line_x.domain(d3.extent(data, function(d) { return d.date; }));
+          line_y.domain([0, d3.max(data, function(d) {
+            return Math.max(d.close, d.open); })]);
+
+          // Add the valueline path.
+          line_svg.append("path")
+              .data([data])
+              .attr("class", "line")
+              .attr("d", valueline);
+
+          // Add the valueline2 path.
+          line_svg.append("path")
+              .data([data])
+              .attr("class", "line")
+              .style("stroke", "red")
+              .attr("d", valueline2);
+
+          // Add the X Axis
+          line_svg.append("g")
+              .attr("transform", "translate(0," + line_height + ")")
+              .call(d3.axisBottom(line_x));
+
+          // Add the Y Axis
+          line_svg.append("g")
+              .call(d3.axisLeft(line_y));
+
+          line_svg.append("text")
+              .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].open)+")")
+              .attr("dy", ".35em")
+              .attr("text-anchor", "start")
+              .style("fill", "red")
+              .text("Open");
+
+          line_svg.append("text")
+              .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].close)+")")
+              .attr("dy", ".35em")
+              .attr("text-anchor", "start")
+              .style("fill", "steelblue")
+              .text("Close");
+
+        });
         </script>
     </body>
 </html>
