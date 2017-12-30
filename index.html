@@ -122,17 +122,20 @@
                         <td>11.7</td>
                       </tr>
                     </table>
+                    <p id="waypoint2"></p>
               </div>
-              <div id="waypoint2" class="story text-wrapper">
-                  <p>text: [some number] out of the 103 restart schools have had a median student performance grade below [some number] in the last three years.
-                      show: a line plot of the student performance grades compared to statewide median like in my original sketch</p>
+      
+              <div class="story text-wrapper" style="margin-bottom:200px;">
+                  <p>(Explanation of how school performance grades work)</p>
+                      <p>The median school performance grade (SPG) of restart schools in the past three school years is 47. The median SPG of all schools in the state in the past three schools years is 62.</p>
               </div>
+              <div id="waypoint3"></div>
               <div class="story text-wrapper">
                   <p>show: a bar graph like the one in my original sketch showing racial/ethnic breakdown, but with two sets of bars to compare statewide vs restart
                       text: (some sentence describing an interesting pullout from this data)</p>
               </div>
               
-              <div id="waypoint3" class="story text-wrapper">
+              <div id="waypoint4" class="story text-wrapper">
                   <p>The percentage of economically disadvantaged students is reported by the state in ranges: 
 
                       (Draw an svg line showing the ranges)
@@ -140,17 +143,13 @@
                 
                       </p>
               </div>
-              <div class="story text-wrapper">
+              <div id="waypoint5" class="story text-wrapper" style="margin-bottom:500px;">
                   <p> The median percentage of economically disadvantaged students in the state is between 60 and 65 percent.
                       
                       (Highlight this range on the line)
                   </p>
               </div>
-              <div class="story text-wrapper">
-                <p>The median percentage of economically disadvantaged students in restart schools is greater than 90 percent.
-                      
-                    (Highlight this range on the line)</p>
-              </div>
+
             </div><!--.col-lg-4-->
             <div class="col-lg-8">
                 <div id="schools-map" class="story">
@@ -161,6 +160,12 @@
                   </div>
                 <div id="bar-chart" class="story" style="display:none;">
                     <svg width="400" height="200"></svg>
+                </div>
+                <div id="scale1">
+                <img src="images/scale-01.png" alt="" style="width:800px;display:none;">
+              </div>
+              <div id="scale2">
+                  <img src="images/scale-02.png" alt="" style="width:800px;display:none;">
                 </div>
             </div>
            
@@ -210,6 +215,30 @@ $(document).ready(function(){
                 $('#bar-chart').toggleClass("inline-block");
                 $('#line-chart svg').toggleClass("fixed");
                 $('#bar-chart svg').toggleClass("fixed");
+                
+              }
+            })
+
+            var waypoint = new Waypoint({
+              element: document.getElementById('waypoint4'),
+              handler: function() {
+               
+                $('#bar-chart').toggleClass("inline-block");
+                $('#scale1 img').toggleClass("inline-block");
+                $('#scale1 img').toggleClass("fixed");
+                $('#bar-chart svg').toggleClass("fixed");
+                
+              }
+            })
+
+            var waypoint = new Waypoint({
+              element: document.getElementById('waypoint5'),
+              handler: function() {
+                console.log("5")
+                $('#scale1 img').toggleClass("inline-block");
+                $('#scale1 img').toggleClass("fixed");
+                $('#scale2 img').toggleClass("inline-block");
+                $('#scale2 img').toggleClass("fixed");
                 
               }
             })
