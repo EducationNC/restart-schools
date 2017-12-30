@@ -219,7 +219,7 @@
             //BASIC BAR CHART - https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998
 
             var bar_svg = d3.select("#bar-chart svg"),
-            bar_margin = {top: 20, right: 20, bottom: 30, left: 80},
+            bar_margin = {top: 20, right: 20, bottom: 30, left: 100},
             bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
             bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
           
@@ -231,31 +231,50 @@
             var g = bar_svg.append("g")
                 .attr("transform", "translate(" + bar_margin.left + "," + bar_margin.top + ")");
               
-            d3.json("data/data.json", function(error, data) {
+            d3.json("data/restart_race.json", function(error, data) {
                 if (error) throw error;
               
                 data.sort(function(a, b) { return a.value - b.value; });
               
-                bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
-                bar_y.domain(data.map(function(d) { return d.area; })).padding(0.1);
+                // bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
+                bar_x.domain([0,1]);
+                bar_y.domain(data.map(function(d) { return d.label; })).padding(0.1);
             
                 g.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + bar_height + ")")
-                    .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseInt(d / 1000); }).tickSizeInner([-bar_height]));
+                    .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseFloat(d)*100 + '%'; }).tickSizeInner([-bar_height]));
             
                 g.append("g")
                     .attr("class", "y axis")
                     .call(d3.axisLeft(bar_y));
             
-                g.selectAll(".bar")
+                var bar = g.selectAll(".bar")
                     .data(data)
                   .enter().append("rect")
                     .attr("class", "bar")
                     .attr("x", 0)
                     .attr("height", bar_y.bandwidth())
-                    .attr("y", function(d) { return bar_y(d.area); })
-                    .attr("width", function(d) { return bar_x(d.value); });
+                    .attr("y", function(d) { return bar_y(d.label); })
+                    .attr("width", function(d) { console.log(d); return bar_x(d.value); })
+                    .style('fill', '#BFDEFF')
+                    .on('mouseover', function () {
+                        d3.select(this).transition().style('fill', '#2B24FF');
+                    })
+                    .on('mouseout', function () {
+                        d3.select(this).transition().style('fill', '#BFDEFF');
+                    });
+                    
+                    bar.append("text")
+                      .attr("class", "label")
+                      .attr("y", bar_height / 2)
+                      .attr("dy", ".35em") //vertical align middle
+                      .attr("text-anchor", "end")
+                      .text(function(d){
+                          return d.value;
+                      });
+                    
+                    
                     // .on("mousemove", function(d){
                     //     tooltip
                     //       .style("left", d3.event.pageX - 50 + "px")
@@ -267,7 +286,7 @@
             });
 
 
-            //BASIC LINE CHART
+            //BASIC LINE CHART - https://bl.ocks.org/d3noob/9edcd7a67e9ec8c8d24d20f3a47e8879
             // set the dimensions and margins of the graph
             var line_margin = {top: 20, right: 40, bottom: 30, left: 50},
                 line_width = 960 - line_margin.left - line_margin.right,
@@ -358,21 +377,6 @@
 
             });
 
-            //SCROLLSTORY
-            // $(function(){
-            //   $("#container").scrollStory({
-            //     itemfocus: function(ev, item){
-            //       if (item.id === "trigger1"){
-            //         $('.school').toggleClass('school-show');
-            //       } else if (item.id === "trigger2"){
-            //         $('.school').toggleClass('school-show');
-            //         $('.county').toggleClass('county-show');
-            //       }
-                  
-            // }
-            // });
-            // });
-
             //WAYPOINTS
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint1'),
@@ -412,8 +416,6 @@
        
 
     </script>
-        <!-- scrollstory -->
-        <!-- <script src="js/jquery.scrollstory.js"></script> -->
         <!-- waypoints -->
         <script src="js/jquery.waypoints.min.js"></script>
 
