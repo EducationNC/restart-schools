@@ -123,32 +123,47 @@
                     </table>
               </div>
               <div id="waypoint2" class="story text-wrapper">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                  <p>text: [some number] out of the 103 restart schools have had a median student performance grade below [some number] in the last three years.
+                      show: a line plot of the student performance grades compared to statewide median like in my original sketch</p>
               </div>
               <div class="story text-wrapper">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                  <p>show: a bar graph like the one in my original sketch showing racial/ethnic breakdown, but with two sets of bars to compare statewide vs restart
+                      text: (some sentence describing an interesting pullout from this data)</p>
               </div>
               
               <div id="waypoint3" class="story text-wrapper">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                  <p>The percentage of economically disadvantaged students is reported by the state in ranges: 
+
+                      (Draw an svg line showing the ranges)
+                      
+                
+                      </p>
               </div>
               <div class="story text-wrapper">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc, sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero purus, id rhoncus arcu venenatis in</p>
+                  <p> The median percentage of economically disadvantaged students in the state is between 60 and 65%.
+                      
+                      (Highlight this range on the line)
+                  </p>
+              </div>
+              <div class="story text-wrapper">
+                <p>The median percentage of economically disadvantaged students in restart schools is greater than 90%.
+                      
+                    (Highlight this range on the line)</p>
               </div>
             </div><!--.col-lg-4-->
-            <div class="col-lg-8" style="">
+            <div class="col-lg-8">
                 <div id="schools-map" class="story">
                   <svg></svg>
                 </div>
-                <div id="bar-chart" class="story">
+                <div id="line-chart" class="story" style="display:none;">
+                    <svg width="400" height="200"></svg>
+                  </div>
+                <div id="bar-chart" class="story" style="display:none;">
                     <svg width="400" height="200"></svg>
                 </div>
             </div>
            
-            <div id="line-chart" class="story">
-                <svg width="400" height="200"></svg>
-  
-              </div>
+            
           </div>
   </div><!--container-->
 
@@ -269,7 +284,6 @@
                       .attr("class", "label")
                       .attr("y", bar_height / 2)
                       .attr("dy", ".35em") //vertical align middle
-                      .attr("text-anchor", "end")
                       .text(function(d){
                           return d.value;
                       });
@@ -386,21 +400,25 @@
               }
             })
 
+            //trigger the line chart
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint2'),
               handler: function() {
+                $('#line-chart').toggleClass("inline-block");
                 $('#schools-map svg').toggleClass("fixed");
-                $('#bar-chart svg').toggleClass("fixed");
+                $('#line-chart svg').toggleClass("fixed");
                 
               }
             })
 
+            //trigger the bar chart
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint3'),
               handler: function() {
- 
-                $('#bar-chart svg').toggleClass("fixed");
+                $('#line-chart').toggleClass("inline-block");
+                $('#bar-chart').toggleClass("inline-block");
                 $('#line-chart svg').toggleClass("fixed");
+                $('#bar-chart svg').toggleClass("fixed");
                 
               }
             })

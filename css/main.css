@@ -51,4 +51,8 @@ p{
 .fixed{
   position:fixed;
   top:0;
+  display:inline-block;
+}
+.inline-block{
+  display:inline-block!important;
 }
