@@ -156,7 +156,7 @@
                   <svg></svg>
                 </div>
                 <div id="line-chart" class="story" style="display:none;">
-                    <svg width="400" height="200"></svg>
+                    <svg width="960" height="500"></svg>
                   </div>
                 <div id="bar-chart" class="story" style="display:none;">
                     <svg width="400" height="200"></svg>
@@ -173,18 +173,18 @@
         $(document).ready(function(){
 
           //SCHOOLS MAP
-          var width = window.innerWidth-300,
-            height = window.innerHeight;
+          var schools_width = window.innerWidth-300,
+          schools_height = window.innerHeight;
 
             var schools_svg = d3.select( "#schools-map svg" )
-              .attr( "width", width )
-              .attr( "height", height );
+              .attr( "width", schools_width )
+              .attr( "height", schools_height );
 
             var projection = d3.geoAlbers()
             .center([7, 35.73])
             .rotate([85.8,.5])
             .scale(6000)
-            .translate([width / 2, height / 2]);
+            .translate([schools_width / 2, schools_height / 2]);
 
             var geoPath = d3.geoPath()
             .projection(projection);
@@ -300,98 +300,88 @@
             });
 
 
-            //BASIC LINE CHART - https://bl.ocks.org/d3noob/9edcd7a67e9ec8c8d24d20f3a47e8879
-            // set the dimensions and margins of the graph
-            var line_margin = {top: 20, right: 40, bottom: 30, left: 50},
-                line_width = 960 - line_margin.left - line_margin.right,
-                line_height = 500 - line_margin.top - line_margin.bottom;
+//MULTI-SERIES LINE CHART - https://bl.ocks.org/mbostock/3884955
 
-            // parse the date / time
-            var parseTime = d3.timeParse("%d-%b-%y");
-
-            // set the ranges
-            var line_x = d3.scaleTime().range([0, line_width]);
-            var line_y = d3.scaleLinear().range([line_height, 0]);
-
-            // define the 1st line
-            var valueline = d3.line()
-                .x(function(d) { return line_x(d.date); })
-                .y(function(d) { return line_y(d.close); });
-
-            // define the 2nd line
-            var valueline2 = d3.line()
-                .x(function(d) { return line_x(d.date); })
-                .y(function(d) { return line_y(d.open); });
-
-            // append the svg obgect to the body of the page
-            // appends a 'group' element to 'svg'
-            // moves the 'group' element to the top left margin
-            var line_svg = d3.select("#line-chart svg");
-
-            line_svg
-                .attr("width", line_width + line_margin.left + line_margin.right)
-                .attr("height", line_height + line_margin.top + line_margin.bottom)
-              .append("g")
-                .attr("transform",
-                      "translate(" + line_margin.left + "," + line_margin.top + ")");
-
-            // Get the data
-            d3.csv("data/data2.csv", function(error, data) {
-              if (error) throw error;
-
-              // format the data
-              data.forEach(function(d) {
-                  d.date = parseTime(d.date);
-                  d.close = +d.close;
-                  d.open = +d.open;
-              });
-
-              // Scale the range of the data
-              line_x.domain(d3.extent(data, function(d) { return d.date; }));
-              line_y.domain([0, d3.max(data, function(d) {
-                return Math.max(d.close, d.open); })]);
-
-              // Add the valueline path.
-              line_svg.append("path")
-                  .data([data])
-                  .attr("class", "line")
-                  .attr("d", valueline);
-
-              // Add the valueline2 path.
-              line_svg.append("path")
-                  .data([data])
-                  .attr("class", "line")
-                  .style("stroke", "red")
-                  .attr("d", valueline2);
-
-              // Add the X Axis
-              line_svg.append("g")
-                  .attr("class", "xaxis")
-                  .attr("transform", "translate(0," + line_height + ")")
-                  .call(d3.axisBottom(line_x));
-
-              // Add the Y Axis
-              line_svg.append("g")
-                  .attr("class", "yaxis")
-                  .call(d3.axisLeft(line_y));
-
-              line_svg.append("text")
-                  .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].open)+")")
-                  .attr("dy", ".35em")
-                  .attr("text-anchor", "start")
-                  .style("fill", "red")
-                  .text("Open");
-
-              line_svg.append("text")
-                  .attr("transform", "translate("+(line_width+3)+","+line_y(data[0].close)+")")
-                  .attr("dy", ".35em")
-                  .attr("text-anchor", "start")
-                  .style("fill", "steelblue")
-                  .text("Close");
-
+        var line_svg = d3.select("#line-chart svg"),
+        line_margin = {top: 20, right: 80, bottom: 30, left: 50},
+        line_width = line_svg.attr("width") - line_margin.left - line_margin.right,
+        line_height = line_svg.attr("height") - line_margin.top - line_margin.bottom,
+        line_g = line_svg.append("g").attr("transform", "translate(" + line_margin.left + "," + line_margin.top + ")");
+        
+        var parseTime = d3.timeParse("%Y%m%d");
+        
+        var line_x = d3.scaleTime().range([0, line_width]),
+        line_y = d3.scaleLinear().range([line_height, 0]),
+        line_z = d3.scaleOrdinal(d3.schemeCategory10);
+        
+        var line = d3.line()
+            .curve(d3.curveBasis)
+            .x(function(d) { return line_x(d.date); })
+            .y(function(d) { return line_y(d.temperature); });
+        
+        d3.tsv("data/example.tsv", type, function(error, data) {
+          if (error) throw error;
+        
+          var cities = data.columns.slice(1).map(function(id) {
+            return {
+              id: id,
+              values: data.map(function(d) {
+                return {date: d.date, temperature: d[id]};
+              })
+            };
+          });
+        
+          line_x.domain(d3.extent(data, function(d) { return d.date; }));
+        
+          line_y.domain([
+            d3.min(cities, function(c) { return d3.min(c.values, function(d) { return d.temperature; }); }),
+            d3.max(cities, function(c) { return d3.max(c.values, function(d) { return d.temperature; }); })
+          ]);
+        
+          line_z.domain(cities.map(function(c) { return c.id; }));
+        
+          line_g.append("g")
+              .attr("class", "axis axis--x")
+              .attr("transform", "translate(0," + line_height + ")")
+              .call(d3.axisBottom(line_x));
+        
+          line_g.append("g")
+              .attr("class", "axis axis--y")
+              .call(d3.axisLeft(line_y))
+            .append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", "0.71em")
+              .attr("fill", "#000")
+              .text("Temperature, ºF");
+        
+          var city = line_g.selectAll(".city")
+            .data(cities)
+            .enter().append("g")
+              .attr("class", "city");
+        
+          city.append("path")
+              .attr("class", "line")
+              .attr("d", function(d) { return line(d.values); })
+              .style("stroke", function(d) { return line_z(d.id); });
+        
+          city.append("text")
+              .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+              .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + line_y(d.value.temperature) + ")"; })
+              .attr("x", 3)
+              .attr("dy", "0.35em")
+              .style("font", "10px sans-serif")
+              .text(function(d) { return d.id; });
             });
+            
+            function type(d, _, columns) {
+              d.date = parseTime(d.date);
+              for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+              return d;
+            }
 
-            //WAYPOINTS
+
+      //WAYPOINTS
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint1'),
               handler: function() {
