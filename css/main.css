@@ -1,3 +1,4 @@
+/*standard DOM*/
 body{
   font-family: 'Lato', sans-serif;
   font-size:1.5em;
@@ -8,6 +9,57 @@ p{
   line-height: 2.1em;
 }
 
+
+/* d3 */
+#append {
+  padding: 0;
+  margin: 0;
+}
+.county {
+stroke: #fff;
+} 
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+  shape-rendering:crispEdges;
+}
+svg{
+  shape-rendering:crispEdges;
+}
+
+    .bar {
+  fill: #6F257F;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.x path {
+  display: none;
+}
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
 
 .school {
   transition: width 2s;
@@ -20,10 +72,11 @@ p{
   stroke-width:2px;
 }
 
+
+/*other*/
 .text-wrapper{
   margin:15vh 0 15vh 0;
 }
-
 
 .percent-table tr:hover{
   background-color:red;
@@ -48,6 +101,8 @@ p{
   color: #be3b3b;
   cursor:pointer;
 }
+
+/*shortcut classes*/
 .fixed{
   position:fixed;
   top:0;
@@ -55,4 +110,9 @@ p{
 }
 .inline-block{
   display:inline-block!important;
+}
+.flex-center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }

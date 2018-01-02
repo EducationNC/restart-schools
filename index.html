@@ -20,7 +20,8 @@
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-queue.v2.min.js"></script>
     <script src="data/restart-schools.geojson"></script>
-
+    
+    <script src="data/basic_data.js"></script>
    
     
 
@@ -29,55 +30,7 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
 
     <style>
-     #append {
-        padding: 0;
-        margin: 0;
-    }
-    .county {
-      stroke: #fff;
-    } 
-
-    .line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 2px;
-        shape-rendering:crispEdges;
-      }
-      svg{
-        shape-rendering:crispEdges;
-      }
-
-          .bar {
-        fill: #6F257F;
-      }
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: #D4D8DA;
-        stroke-width: 1px;
-        shape-rendering: crispEdges;
-      }
-      .x path {
-        display: none;
-      }
-      .toolTip {
-        position: absolute;
-        display: none;
-        min-width: 80px;
-        height: auto;
-        background: none repeat scroll 0 0 #ffffff;
-        border: 1px solid #6F257F;
-        padding: 14px;
-        text-align: center;
-      }
-
-      .bar:hover {
-        fill: brown;
-      }
-
-      .axis--x path {
-        display: none;
-      }
+    
     </style>
 
   </head>
@@ -97,8 +50,8 @@
     <div id="container" class="container">
         <div class="row">
           <div class="col-lg-4 big-text-col">
-              <h1>Restart Schools Graphic</h1>
-            <div id="waypoint1" class="story text-wrapper">
+              <h1 id="waypoint1">Restart Schools Graphic</h1>
+            <div class="story text-wrapper">
                 <p>There are 103 schools approved for restart status in North Carolina.</p>
               </div>
               <div class="story text-wrapper">
@@ -109,17 +62,45 @@
                         <th>School district</th>
                         <th>Percent of students in restart schools</th>
                       </tr>
-                      <tr data-fip="001" class="map-hover-item">
-                        <td>Alamance-Burlington</td>
-                        <td>2.2%</td>
+                      <tr data-fip="083" class="map-hover-item">
+                        <td>Weldon City (located in Halifax County)</td>
+                        <td>66.9%</td>
+                      </tr>
+                      <tr data-fip="187" class="map-hover-item">
+                        <td>Washington</td>
+                        <td>50</td>
+                      </tr>
+                      <tr data-fip="083" class="map-hover-item">
+                        <td>Halifax County</td>
+                        <td>49.1</td>
+                      </tr>
+                      <tr data-fip="159" class="map-hover-item">
+                        <td>Rowan-Salisbury</td>
+                        <td>40.2</td>
+                      </tr>
+                      <tr data-fip="131" class="map-hover-item">
+                        <td>Northampton County</td>
+                        <td>26</td>
+                      </tr>
+                      <tr data-fip="063" class="map-hover-item">
+                        <td>Durham</td>
+                        <td>25</td>
                       </tr>
                       <tr data-fip="015" class="map-hover-item">
                         <td>Bertie</td>
                         <td>20.3</td>
                       </tr>
-                      <tr data-fip="025" class="map-hover-item">
-                        <td>Cabarrus</td>
-                        <td>11.7</td>
+                      <tr data-fip="139" class="map-hover-item">
+                        <td>Elizabeth City/Pasquotank</td>
+                        <td>17</td>
+                      </tr>
+                      <tr data-fip="037" class="map-hover-item">
+                        <td>Chatham</td>
+                        <td>14.1</td>
+                      </tr>
+                      <tr data-fip="025" data-fip2="159" class="map-hover-item">
+                        <td>Kannapolis City (in Cabarrus and Rowan counties)</td>
+                        <td>41.3</td>
                       </tr>
                     </table>
                     <p id="waypoint2"></p>
@@ -172,10 +153,29 @@
             </div>
            
             
-          </div>
+          </div><!--row -->
+         
   </div><!--container-->
 
-  <hr>
+  <hr id="waypoint6">
+  <div class="flex-center">
+    <h1>Explore individual schools</h1>
+  </div>
+
+
+
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-4" id="school-list">
+          <h1>list of schools</h1>
+        </div>
+        <div class="col-lg-8">
+          <div class="approved-on">
+
+          </div>
+        </div>
+      </div>  
+  </div>
 
   <!-- <div class="container-fluid">
     <div class="row">
@@ -236,9 +236,17 @@ $(document).ready(function(){
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint5'),
               handler: function() {
-                console.log("5")
                 $('#scale1 img').toggleClass("inline-block");
                 $('#scale1 img').toggleClass("fixed");
+                $('#scale2 img').toggleClass("inline-block");
+                $('#scale2 img').toggleClass("fixed");
+                
+              }
+            })
+
+            var waypoint = new Waypoint({
+              element: document.getElementById('waypoint6'),
+              handler: function() {
                 $('#scale2 img').toggleClass("inline-block");
                 $('#scale2 img').toggleClass("fixed");
                 
@@ -248,10 +256,23 @@ $(document).ready(function(){
 
             $('.map-hover-item').hover(function(e){
               var thisFip = $(this).data('fip');
+              if ($(this).data('fip2') != null){
+                thisFip2 = $(this).data('fip2');
+                $('.fip_' + thisFip2).toggleClass('county-highlight');
+              }
               console.log("fip_" + thisFip);
 
               $('.fip_' + thisFip).toggleClass('county-highlight');
+
             });
+
+            //POPULATE THE TABLE THING
+            for (i in ALL_DATA) {
+              var school = ALL_DATA[i];
+
+              $('#school-list').append('<p>' + school.official_school_name + '</p>');
+            }
+
         }); //doc ready
        
 
