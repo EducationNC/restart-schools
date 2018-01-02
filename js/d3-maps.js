@@ -198,7 +198,7 @@ $(document).ready(function(){
   
     city.append("text")
         .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-        .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + line_y(d.value.temperature) + ")"; })
+        .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + parseInt(line_y(d.value.temperature)+10) + ")"; })
         .attr("x", 3)
         .attr("dy", "0.35em")
         .style("font", "10px sans-serif")
