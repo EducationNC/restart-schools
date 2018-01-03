@@ -203,8 +203,9 @@ table{
 
 #top-explorer{
   display:grid;
-  margin:0 10%;
-  grid-template-columns:600px 40fr;
+  margin:0 45%;
+  grid-template-columns:100%;
+  
 }
 header{
   display:grid;
@@ -214,6 +215,15 @@ header{
   display:grid;
   grid-template-columns:400px 400px;
 }
+
+#top-sidebar{
+  justify-self: center;
+  grid-column: 1 / -1;
+}
+
+
+
+
 /* th.percent-students {
   transform-origin: bottom left;
   position: absolute;
