@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
-    //SCHOOLS MAP
+  function nc_map(selector, json_file){
     var schools_width = window.innerWidth-300,
     schools_height = window.innerHeight;
 
-      var schools_svg = d3.select( "#schools-map svg" );
+      var schools_svg = d3.select(selector);
         // .attr( "width", schools_width )
         // .attr( "height", schools_height );
 
@@ -19,7 +19,7 @@ $(document).ready(function(){
 
       var q = d3_queue.queue();
       q
-      .defer(d3.json, "data/nc-counties.json")
+      .defer(d3.json, "data/" + json_file)
       .await(ready);
 
       function ready(error, counties){
@@ -62,6 +62,7 @@ $(document).ready(function(){
         .attr( "fill", "#900" )
         .attr( "stroke", "#999" )
         .attr( "d", geoPath );
+    } //nc_map
 
 
       //BASIC BAR CHART - https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998
@@ -134,15 +135,12 @@ $(document).ready(function(){
         });
       }
 
-      basic_bar("#bar-chart #bar-1", "restart_race.json");
-      basic_bar("#bar-chart #bar-2", "restart_race.json");
-
-      
-
 
 //MULTI-SERIES LINE CHART - https://bl.ocks.org/mbostock/3884955
 
-  var line_svg = d3.select("#line-chart svg"),
+function line_chart(selector, file_name){
+
+  var line_svg = d3.select(selector),
   line_margin = {top: 20, right: 80, bottom: 30, left: 50},
   line_width = line_svg.attr("width") - line_margin.left - line_margin.right,
   line_height = line_svg.attr("height") - line_margin.top - line_margin.bottom,
@@ -161,7 +159,7 @@ $(document).ready(function(){
       .x(function(d) { return line_x(d.date); })
       .y(function(d) { return  line_y(d.temperature); });
   
-  d3.tsv("data/example.tsv", type, function(error, data) {
+  d3.tsv("data/" + file_name, type, function(error, data) {
     if (error) throw error;
   
     var cities = data.columns.slice(1).map(function(id) {
@@ -234,6 +232,14 @@ $(document).ready(function(){
         for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
         return d;
       }
+    } //line_chart
+
+      //build those d3
+      basic_bar("#bar-chart #bar-1", "restart_race.json");
+      basic_bar("#bar-chart #bar-2", "restart_race.json");
+      nc_map("#schools-map svg", "nc-counties.json");
+      nc_map("#highlight-map svg", "nc-counties.json");
+      line_chart("#line-chart svg", "example.tsv");
 
 
   
