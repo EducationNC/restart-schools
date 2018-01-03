@@ -61,71 +61,78 @@ $(document).ready(function(){
 
       //BASIC BAR CHART - https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998
 
-      var bar_svg = d3.select("#bar-chart svg"),
-      bar_margin = {top: 20, right: 20, bottom: 30, left: 100},
-      bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
-      bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
-    
-      // var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-        
-      var bar_x = d3.scaleLinear().range([0, bar_width]);
-      var bar_y = d3.scaleBand().range([bar_height, 0]);
+      function basic_bar(selector, json_file){
+        //"#bar-chart svg"
+        //restart_race.json
+        var bar_svg = d3.select(selector),
+        bar_margin = {top: 20, right: 20, bottom: 30, left: 100},
+        bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
+        bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
       
-      var g = bar_svg.append("g")
-          .attr("transform", "translate(" + bar_margin.left + "," + bar_margin.top + ")");
+        // var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+          
+        var bar_x = d3.scaleLinear().range([0, bar_width]);
+        var bar_y = d3.scaleBand().range([bar_height, 0]);
         
-      d3.json("data/restart_race.json", function(error, data) {
-          if (error) throw error;
+        var g = bar_svg.append("g")
+            .attr("transform", "translate(" + bar_margin.left + "," + bar_margin.top + ")");
+          
+        d3.json("data/" + json_file, function(error, data) {
+            if (error) throw error;
+          
+            data.sort(function(a, b) { return a.value - b.value; });
+          
+            // bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
+            bar_x.domain([0,1]);
+            bar_y.domain(data.map(function(d) { return d.label; })).padding(0.1);
         
-          data.sort(function(a, b) { return a.value - b.value; });
+            g.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + bar_height + ")")
+                .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseFloat(d)*100 + '%'; }).tickSizeInner([-bar_height]));
         
-          // bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
-          bar_x.domain([0,1]);
-          bar_y.domain(data.map(function(d) { return d.label; })).padding(0.1);
-      
-          g.append("g")
-              .attr("class", "x axis")
-              .attr("transform", "translate(0," + bar_height + ")")
-              .call(d3.axisBottom(bar_x).ticks(5).tickFormat(function(d) { return parseFloat(d)*100 + '%'; }).tickSizeInner([-bar_height]));
-      
-          g.append("g")
-              .attr("class", "y axis")
-              .call(d3.axisLeft(bar_y));
-      
-          var bar = g.selectAll(".bar")
-              .data(data)
-            .enter().append("rect")
-              .attr("class", "bar")
-              .attr("x", 0)
-              .attr("height", bar_y.bandwidth())
-              .attr("y", function(d) { return bar_y(d.label); })
-              .attr("width", function(d) {  return bar_x(d.value); })
-              .style('fill', '#BFDEFF')
-              .on('mouseover', function () {
-                  d3.select(this).transition().style('fill', '#2B24FF');
-              })
-              .on('mouseout', function () {
-                  d3.select(this).transition().style('fill', '#BFDEFF');
-              });
-              
-              bar.append("text")
-                .attr("class", "label")
-                .attr("y", bar_height / 2)
-                .attr("dy", ".35em") //vertical align middle
-                .text(function(d){
-                    return d.value;
+            g.append("g")
+                .attr("class", "y axis")
+                .call(d3.axisLeft(bar_y));
+        
+            var bar = g.selectAll(".bar")
+                .data(data)
+              .enter().append("rect")
+                
+                .attr("class", "bar")
+                .attr("x", 0)
+                .attr("height", bar_y.bandwidth())
+                .attr("y", function(d) { return bar_y(d.label); })
+                .attr("width", function(d) {  return bar_x(d.value); })
+                .style('fill', '#BFDEFF')
+                .on('mouseover', function () {
+                    d3.select(this).transition().style('fill', '#2B24FF');
+                })
+                .on('mouseout', function () {
+                    d3.select(this).transition().style('fill', '#BFDEFF');
                 });
-              
-              
-              // .on("mousemove", function(d){
-              //     tooltip
-              //       .style("left", d3.event.pageX - 50 + "px")
-              //       .style("top", d3.event.pageY - 70 + "px")
-              //       .style("display", "inline-block")
-              //       .html((d.area) + "<br>" + "£" + (d.value));
-              // })
-              // .on("mouseout", function(d){ tooltip.style("display", "none");});
-      });
+                
+                g.append("g")
+                .attr("transform", "translate(10,-60)")
+                .selectAll("text")
+                .data(data).enter()
+                .append("text")
+                  .attr("class", "label")
+                  .attr("y", bar_height / 2)
+                  .attr("dy", ".35em") //vertical align middle
+                  .text(function(d){
+                      return Math.floor(d.value*100) + "%";
+                  })
+                  .attr("transform",function(d){
+                    return "translate(" + bar_x(d.value) + "," + bar_y(d.label) + ")";
+                  });
+        });
+      }
+
+      basic_bar("#bar-chart #bar-1", "restart_race.json");
+      basic_bar("#bar-chart #bar-2", "restart_race.json");
+
+      
 
 
 //MULTI-SERIES LINE CHART - https://bl.ocks.org/mbostock/3884955
@@ -193,7 +200,7 @@ $(document).ready(function(){
   
     city.append("path")
         .attr("class", "line")
-        .attr("d", function(d) { console.log(d); return line(d.values); })
+        .attr("d", function(d) { return line(d.values); })
         .style("stroke", function(d) {  return line_z(d.id); });
   
     city.append("text")
@@ -203,7 +210,18 @@ $(document).ready(function(){
         .attr("dy", "0.35em")
         .style("font", "10px sans-serif")
         .text(function(d) { return d.id; });
-      });
+    
+
+    // line_svg.append("g").selectAll("circle")
+    //     .data(data)
+    //     .enter().append("circle")
+    //     .attr("r", 2)
+    //     .attr("cx", function(d, i){ console.log(i); line_x(d.date);})
+    //     .attr("cy", function(d){ line_y(d.temperature);})
+    //     .attr("fill", "none")
+    //     .attr("stroke", "black");
+
+       });
       
       function type(d, _, columns) {
         // d.date = parseTime(d.date);
@@ -211,4 +229,7 @@ $(document).ready(function(){
         for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
         return d;
       }
+
+
+  
     }); //doc ready
