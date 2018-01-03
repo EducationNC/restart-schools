@@ -4,15 +4,15 @@ $(document).ready(function(){
     var schools_width = window.innerWidth-300,
     schools_height = window.innerHeight;
 
-      var schools_svg = d3.select( "#schools-map svg" )
-        .attr( "width", schools_width )
-        .attr( "height", schools_height );
+      var schools_svg = d3.select( "#schools-map svg" );
+        // .attr( "width", schools_width )
+        // .attr( "height", schools_height );
 
       var projection = d3.geoAlbers()
       .center([7, 35.73])
       .rotate([85.8,.5])
-      .scale(5500)
-      .translate([schools_width / 2, schools_height / 2]);
+      .scale(5500);
+      // .translate([schools_width / 2, schools_height / 2]);
 
       var geoPath = d3.geoPath()
       .projection(projection);
@@ -25,6 +25,8 @@ $(document).ready(function(){
       function ready(error, counties){
 
       schools_svg.append("g")
+          .attr("x", 0)
+          .attr("y", 0)
           .selectAll("path")
           .data( topojson.feature(counties, counties.objects.counties).features)
           .enter()
@@ -35,10 +37,13 @@ $(document).ready(function(){
           })
           .attr( "fill", function(d){
               return "#5656";
-          }); 
+          })
+          ; 
       }
 
-      var schools = schools_svg.append( "g" );
+      var schools = schools_svg.append( "g" )
+      .attr("x", 0)
+      .attr("y", 0);
 
       schools.selectAll( "path" )
         .data( restartschools.features )
