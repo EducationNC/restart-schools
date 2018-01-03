@@ -16,6 +16,7 @@ No prerequisites required to run this application.
 ## Deployment
 
 This graphic will be built directly into the WordPress CMS and tested outside of the CMS in this repository.
+Also can be viewed temporarily on Heroku at [restart-schools.herokuapp.com](restart-schools.herokuapp.com).
 
 ## Built With
 
