@@ -93,6 +93,13 @@ shape-rendering: geometricPrecision!important;
   background-color:initial;
 }
 
+.table-instr{
+  display:inline-block;
+  font-size:1rem;
+  font-weight:400;
+  font-style:italic;
+}
+
 .big-text-col{
   z-index:999;
 }
@@ -229,6 +236,11 @@ header{
 #top-sidebar{
   justify-self: center;
   grid-column: 1 / -1;
+}
+
+#table-map-wrap{
+  display:inline-grid;
+  grid-template-columns:50% 50%;
 }
 
 /* #bottom-explorer{

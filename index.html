@@ -53,13 +53,15 @@
               <span data-fip="183" class="map-link map-hover-item">Wake</span> counties. When adjusted for population,
               <span data-fip="083" class="map-link map-hover-item">Weldon City Public Schools</span> in Halifax County has the highest proportion of students in restart schools, with
               about 67 percent of their students in restart schools.</p>
-            
+            <div id="table-map-wrap">
             <div id="percent-table-wrapper">
-                <h3>Top 10 Counties with Most Restart Schools</h3>
+                <h3>Percentage of students in restart schools by county
+                    <span class="table-instr">Hover or click on a table row to see that county on the map.</span>
+                </h3>
             <table class="table percent-table">   
               <tr>
                 <th class="table-text">School district</th>
-                <th class="table-text percent-students">Percent of students in restart schools</th>
+                <th class="table-text percent-students">Percent</th>
               </tr>
               <tr data-fip="083" class="map-hover-item">
                 <td class="table-text">Weldon City (located in Halifax County)</td>
@@ -103,10 +105,12 @@
               </tr>
             </table>
           </div>
+          <div id="highlight-map">
+              <svg width="960" height="500"></svg>
+          </div>
             <p id="waypoint2"></p>
-            <div id="highlight-map">
-                <svg width="960" height="500"></svg>
-            </div>
+           
+          </div><!--#table-map-wrap-->
          
         </div>
         
