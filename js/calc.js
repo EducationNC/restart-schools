@@ -57,7 +57,7 @@ $(document).ready(function(){
         schools_svg.selectAll("circle")
           .data([coord]).enter()
           .append("circle")
-          .attr("cx", function (d) { console.log(projection(d)); return projection(d)[0]; })
+          .attr("cx", function (d) { return projection(d)[0]; })
           .attr("cy", function (d) { return projection(d)[1]; })
           .attr("r", "8px")
           .attr("fill", "red")
@@ -199,7 +199,7 @@ $(document).ready(function(){
 
 //MULTI-SERIES LINE CHART - https://bl.ocks.org/mbostock/3884955
 
-function line_chart(selector, file_name){
+function line_chart(selector, file_name, isJson, json_data){
 
   var line_svg = d3.select(selector),
   line_margin = {top: 20, right: 80, bottom: 30, left: 50},
@@ -220,6 +220,7 @@ function line_chart(selector, file_name){
       .x(function(d) { return line_x(d.date); })
       .y(function(d) { return  line_y(d.score); });
   
+  if (!isJson){
   d3.tsv("data/" + file_name, type, function(error, data) {
     if (error) throw error;
   
@@ -231,14 +232,9 @@ function line_chart(selector, file_name){
         })
       };
     });
-  
-    // line_x.domain(d3.extent(data, function(d) { return d.date; }));
     line_x.domain([2013,2016]);
   
-    line_y.domain([ 0,100
-      // d3.min(schools, function(c) { return d3.min(c.values, function(d) { return d.score; }); }),
-      // d3.max(schools, function(c) { return d3.max(c.values, function(d) { return d.score; }); })
-    ]);
+    line_y.domain([ 0,100 ]);
   
     line_z.domain(schools.map(function(c) { return c.id; }));
   
@@ -274,18 +270,62 @@ function line_chart(selector, file_name){
         .attr("dy", "0.35em")
         .style("font", "10px sans-serif")
         .text(function(d) { return d.id; });
+  }); //d3.tsv
+} else {
+  var schools = json_data;
+  line_x.domain([2013,2016]);
+  
+  line_y.domain([ 0,100 ]);
+
+  line_z.domain(schools.map(function(c) { return c.id; }));
+
+  line_g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + line_height + ")")
+      .call(d3.axisBottom(line_x).ticks(3).tickFormat(function(d) { return parseInt(d); }));
+
+  line_g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(line_y))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("fill", "#000")
+      .text("Student Performance Grade");
+
+  var school = line_g.selectAll(".school")
+    .data(schools)
+    .enter().append("g")
+      .attr("class", "school");
+
+  school.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d.values); })
+      .style("stroke", function(d) {  return line_z(d.id); });
+
+  school.append("text")
+      .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+      .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + parseInt(line_y(d.value.score)+10) + ")"; })
+      .attr("x", 3)
+      .attr("dy", "0.35em")
+      .style("font", "10px sans-serif")
+      .text(function(d) { return d.id; });
+  }
+  
+ 
     
 
     // line_svg.append("g").selectAll("circle")
     //     .data(data)
     //     .enter().append("circle")
     //     .attr("r", 2)
-    //     .attr("cx", function(d, i){ console.log(i); line_x(d.date);})
+    //     .attr("cx", function(d, i){ line_x(d.date);})
     //     .attr("cy", function(d){ line_y(d.score);})
     //     .attr("fill", "none")
     //     .attr("stroke", "black");
 
-       });
+
       
       function type(d, _, columns) {
         // d.date = parseTime(d.date);
@@ -300,7 +340,7 @@ function line_chart(selector, file_name){
       basic_bar("#bar-chart #bar-2", false, "data/restart_race.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
       nc_map("#highlight-map svg", "nc-counties.json", "", false);
-      line_chart("#line-chart svg", "example.tsv");
+      line_chart("#line-chart svg", "example.tsv", false, "");
 
 
             //WAYPOINTS
@@ -413,7 +453,6 @@ function line_chart(selector, file_name){
                 element: document.getElementById("waypoint_" + school.school_code),
                 handler: function () {
                   var school = this.element.dataset;
-                  // console.log("we've triggered for: " + school.official_school_name)
                 }
               })
       
@@ -430,25 +469,74 @@ function line_chart(selector, file_name){
               thisDiv = $(div_id);
       
       
-              //TODO: district name
+              //TODO: style
               thisDiv.append('<h4 class="lister__school_district">' + school.district + '</h4>');
-      
-      
-              //TODO: approved for
+    
+              //TODO: style
               thisDiv.append('<h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017</h4>')
       
-              //TODO: address map
+              //TODO: add address label
               thisDiv.append('<svg id="map_' + school.school_code + '" viewbox="0 0 960 500"></svg>');
               //selector, json_file, isSingle
               var coord = [school.longitude, school.latitude];
               nc_map("#map_" + school.school_code, "nc-counties.json", coord,  true)
       
-              //TODO: elements of flex
+              //TODO: elements of flex (build structure in a sheet to accept this)
       
               //TODO: student performance
+              thisDiv.append('<svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
 
-      
-              //TODO: race/ethn
+              var spgschool = all_spg["" + school.school_code][0]
+ 
+              var spg_data = [
+                {
+                  "id": school.official_school_name,
+                  "values": [
+                    {
+                      "date": "2016",
+                      "score": spgschool.spg_grade_1617
+                    },
+                    {
+                      "date": "2015",
+                      "score": spgschool.spg_grade_1516
+                    },
+                    {
+                      "date": "2014",
+                      "score": spgschool.spg_grade_1415
+                    },
+                    {
+                      "date": "2013",
+                      "score": spgschool.spg_grade_1314
+                    }
+                  ]
+                },
+                {
+                  "id": "Statewide",
+                  "values": [
+                    {
+                      "date": "2016",
+                      "score": 65
+                    },
+                    {
+                      "date": "2015",
+                      "score": 64
+                    },
+                    {
+                      "date": "2014",
+                      "score": 62
+                    },
+                    {
+                      "date": "2013",
+                      "score": 62
+                    }
+                  ]
+                }
+              ];
+              line_chart("#spg_" + school.school_code, "", true, spg_data);
+
+
+    
+              //TODO: maintain bar order here
               thisDiv.append('<svg id="race_' + school.school_code + '" width="400" height="200" viewbox="0 0 400 200"></svg>');
               var race_ethn = [
                 {"label": "Asian ", "value": school.asian_percentage},
@@ -457,13 +545,14 @@ function line_chart(selector, file_name){
                 {"label": "White ", "value": school.white_percentage},
                 {"label": "Two or More Races ", "value": school.two_percentage}
               ]
-              console.log(race_ethn)
 
               basic_bar("#race_" + school.school_code, true, race_ethn);
 
 
       
-              //TODO: econom disadv
+              //TODO: econom disadv (add the bar)
+              thisDiv.append('<h4 class="lister__econ_disadv">Percent of students economically disadvantaged: ' + school.percent_economically_disadvantaged + '</h4>')
+
       
             }
   
