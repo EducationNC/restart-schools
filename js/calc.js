@@ -436,7 +436,7 @@ function line_chart(selector, file_name, isJson, json_data){
               var school = ALL_DATA[i];
               var keys = Object.keys(school);
               //1a. create the data wrappers
-              $('#data-list').append('<div style="margin:3vh;" class="data-lister" id="waypoint_' + school.school_code + '"><h2 class="lister__school_name">' + school.official_school_name + '</h2></div>');
+              $('#data-list').append('<div class="data-lister" id="waypoint_' + school.school_code + '"><h2 class="lister__school_name">' + school.official_school_name + '</h2></div>');
       
               //1b. iterate thru the data keys
               for (j in keys) {
@@ -451,22 +451,38 @@ function line_chart(selector, file_name, isJson, json_data){
       
               window["waypoint_" + school.school_code] = new Waypoint({
                 element: document.getElementById("waypoint_" + school.school_code),
+                offset: 20,
                 handler: function () {
                   var school = this.element.dataset;
+                  console.log("Trigger: " + school.official_school_name)
+                  Waypoint.disableAll();
+                  Waypoint.enableAll();
+                  $('.data-lister').removeClass("peek");
+                  // $('.data-lister').removeClass("expand");
+                  $('#waypoint_' + school.school_code).toggleClass("peek");
+                  
                 }
               })
+
+              $('#open_' + school.school_code).click(function(){
+                $(this).parent().parent().toggleClass("expand");
+                Waypoint.refreshAll()
+
+              });
       
               
             } 
           } //build_scaffolding
       
             build_scaffolding();
-      
-            //NOTE: Waypoints are on the righthand side
+   
       
             function build_section(school, div_id){
       
               thisDiv = $(div_id);
+
+              //PEEK
+              thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p><p id="open_' + school.school_code + '">Click here to view more</p></div>')
       
       
               //TODO: style

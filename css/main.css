@@ -209,7 +209,7 @@ table{
 
 /* my css grid*/
 
-#top-explorer{
+#top-explorer, #bottom-explorer{
   display:grid;
   margin:0 20%;
   grid-template-columns:100%;
@@ -231,11 +231,11 @@ header{
   grid-column: 1 / -1;
 }
 
-#bottom-explorer{
+/* #bottom-explorer{
   display:grid;
   margin:0 10%;
   grid-template-columns:50% 50%;
-}
+} */
 
 
 
@@ -254,16 +254,22 @@ header{
   left: 0;
 }
 
-
-
-
-/* th.percent-students {
-  transform-origin: bottom left;
-  position: absolute;
+.data-lister{
+  height: 100px;
+  overflow: hidden;
+  -webkit-transition: height .4s, -webkit-transform .4s; /* Safari */
+    transition: height .4s, ease-in-out .4s;
+  /* header and peek element are exactly 100px tall */
+  display: grid;
+  grid-template-rows: 100px 100px 1fr;
 }
-th.percent-students {
-  transform: translate(2.58em,-2em) rotate(-60deg);
-} */
+.peek{
+  height:200px;
+}
+.expand{
+  height:100%;
+  overflow: initial;
+}
 
 
 /* css animations */
