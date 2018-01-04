@@ -28,7 +28,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/80312_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -59,7 +59,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600311_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "North Central",
@@ -90,7 +90,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320304_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -121,7 +121,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320346_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "Southwest",
@@ -152,7 +152,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360320_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -183,7 +183,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/900314_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -214,7 +214,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920329_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-16"
+   "board_approved": "April 16"
  },
  {
    "region": "North Central",
@@ -245,7 +245,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920496_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Southwest",
@@ -276,7 +276,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600308_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -307,7 +307,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/130329_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Southwest",
@@ -338,7 +338,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/130328_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Southwest",
@@ -369,7 +369,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600474_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -400,7 +400,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600517_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -431,7 +431,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600519_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "North Central",
@@ -462,7 +462,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/190350_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Aug-16"
+   "board_approved": "August 16"
  },
  {
    "region": "Southeast",
@@ -555,7 +555,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320366_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -586,7 +586,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320369_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -617,7 +617,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/330328_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "North Central",
@@ -648,7 +648,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/330332_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Northeast",
@@ -679,7 +679,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/700318_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Northeast",
@@ -710,7 +710,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/700322_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -741,7 +741,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360490_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Northeast",
@@ -772,7 +772,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/420346_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Northeast",
@@ -803,7 +803,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/420316_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -834,7 +834,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/490345_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "North Central",
@@ -865,7 +865,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/510344_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Northeast",
@@ -896,7 +896,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/660336_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southeast",
@@ -927,7 +927,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/670339_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "Northeast",
@@ -958,7 +958,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/740375_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -989,7 +989,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800373_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1020,7 +1020,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800376_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "North Central",
@@ -1051,7 +1051,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920532_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Northeast",
@@ -1082,7 +1082,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/940314_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "Southwest",
@@ -1113,7 +1113,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/130340_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -1144,7 +1144,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320400_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1175,7 +1175,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/330334_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Aug-16"
+   "board_approved": "August 16"
  },
  {
    "region": "Southwest",
@@ -1206,7 +1206,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360520_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Northeast",
@@ -1237,7 +1237,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/420376_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -1268,7 +1268,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/132304_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Piedmont-Tirad",
@@ -1299,7 +1299,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/10357_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-16"
+   "board_approved": "April 16"
  },
  {
    "region": "Southwest",
@@ -1330,7 +1330,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/130313_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Southwest",
@@ -1361,7 +1361,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/130342_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Southwest",
@@ -1392,7 +1392,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600335_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1423,7 +1423,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600374_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1454,7 +1454,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600398_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1485,7 +1485,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600422_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1516,7 +1516,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600550_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1547,7 +1547,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600521_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1578,7 +1578,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600562_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -1609,7 +1609,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/600574_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "North Central",
@@ -1640,7 +1640,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/190370_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Aug-16"
+   "board_approved": "August 16"
  },
  {
    "region": "Southwest",
@@ -1671,7 +1671,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/230342_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -1702,7 +1702,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/230346_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "North Central",
@@ -1733,7 +1733,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320306_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1764,7 +1764,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320363_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1795,7 +1795,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320315_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1826,7 +1826,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320344_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1857,7 +1857,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320320_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1888,7 +1888,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320339_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1919,7 +1919,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320363_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1950,7 +1950,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320338_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -1981,7 +1981,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/320368_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -2012,7 +2012,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/330312_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Aug-16"
+   "board_approved": "August 16"
  },
  {
    "region": "Southwest",
@@ -2043,7 +2043,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360428_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2074,7 +2074,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360392_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2105,7 +2105,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/360498_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Northeast",
@@ -2136,7 +2136,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/420328_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -2167,7 +2167,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/490354_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -2198,7 +2198,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/490352_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -2229,7 +2229,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/490366_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "North Central",
@@ -2260,7 +2260,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/510330_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Southwest",
@@ -2291,7 +2291,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/132330_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southeast",
@@ -2322,7 +2322,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/670312_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "Northeast",
@@ -2353,7 +2353,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/740334_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2384,7 +2384,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800315_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2415,7 +2415,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800316_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2446,7 +2446,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800328_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2477,7 +2477,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800314_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2508,7 +2508,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800358_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2539,7 +2539,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800360_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2570,7 +2570,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800362_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2601,7 +2601,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800346_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2632,7 +2632,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800364_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2663,7 +2663,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800398_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2694,7 +2694,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/800410_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "May-17"
+   "board_approved": "May 17"
  },
  {
    "region": "Southwest",
@@ -2725,7 +2725,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/900308_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "North Central",
@@ -2756,7 +2756,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/910360_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-16"
+   "board_approved": "April 16"
  },
  {
    "region": "North Central",
@@ -2787,7 +2787,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920352_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2818,7 +2818,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920360_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2849,7 +2849,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920403_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2880,7 +2880,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920404_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2911,7 +2911,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920408_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2942,7 +2942,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920410_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -2973,7 +2973,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920415_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "North Central",
@@ -3004,7 +3004,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920599_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-16"
+   "board_approved": "April 16"
  },
  {
    "region": "North Central",
@@ -3035,7 +3035,7 @@ const ALL_DATA = [
    "school_type": "Middle",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/920601_2016_Middle.html",
    "reform_model": "Restart",
-   "board_approved": "Dec-16"
+   "board_approved": "December 16"
  },
  {
    "region": "Northeast",
@@ -3066,7 +3066,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/940308_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Jul-17"
+   "board_approved": "July 17"
  },
  {
    "region": "Southeast",
@@ -3097,7 +3097,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/960335_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-16"
+   "board_approved": "April 16"
  },
  {
    "region": "Northeast",
@@ -3128,7 +3128,7 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/422314_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Northeast",
@@ -3159,7 +3159,7 @@ const ALL_DATA = [
    "school_type": "High",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/422315_2016_High.html",
    "reform_model": "Restart",
-   "board_approved": "Apr-17"
+   "board_approved": "April 17"
  },
  {
    "region": "Piedmont-Tirad",
@@ -3190,6 +3190,6 @@ const ALL_DATA = [
    "school_type": "Elementary",
    "sas_url": "https://ncreportcards.ondemand.sas.com/src/reports/340351_2016_Elementary.html",
    "reform_model": "Restart",
-   "board_approved": "Aug-16"
+   "board_approved": "August 16"
  }
 ]

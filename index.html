@@ -43,7 +43,7 @@
             <p>There are 103 schools approved for restart status in North Carolina.</p>
           </div>
           <div id="schools-map">
-              <svg width="960" height="500"></svg>
+              <svg viewbox="0 0 960 500"></svg>
           </div>
           <div id="waypoint1a">
             <p>Most restart schools are located in
@@ -52,8 +52,10 @@
               <span data-fip="183" class="map-link map-hover-item">Wake</span> counties. When adjusted for population,
               <span data-fip="083" class="map-link map-hover-item">Weldon City Public Schools</span> in Halifax County has the highest proportion of students in restart schools, with
               about 67 percent of their students in restart schools.</p>
-            <p> Top 10 Counties with Most Restart Schools</p>
-            <table class="table percent-table">
+            
+            <div id="percent-table-wrapper">
+                <h3>Top 10 Counties with Most Restart Schools</h3>
+            <table class="table percent-table">   
               <tr>
                 <th class="table-text">School district</th>
                 <th class="table-text percent-students">Percent of students in restart schools</th>
@@ -99,11 +101,13 @@
                 <td class="table-num">41</td>
               </tr>
             </table>
+          </div>
             <p id="waypoint2"></p>
             <div id="highlight-map">
                 <svg width="960" height="500"></svg>
             </div>
-          </div>
+         
+        </div>
         
           <div>
             <p>(Explanation of how school performance grades work)</p>
@@ -154,145 +158,27 @@
   <hr id="waypoint6">
 <div id="bottom-explorer">
 
-  <div class="flex-center">
+  <!-- <div class="flex-center">
     <h1>Explore individual schools</h1>
-  </div>
+  </div> -->
 
   <div id="school-list">
-    <h1>list of schools</h1>
+    <!-- <h1>list of schools</h1> -->
   </div>
   <div id="data-list"></div>
 
 </div> <!--/#bottom-explorer -->
 
-  <div class="wrapper">
-    <header class="header">My header</header>
-    <aside class="sidebar">Sidebar</aside>
-    <article class="content">
-      <h1>2 column, header and footer</h1>
-      <p>This example uses line-based positioning, to position the header and footer, stretching them across the grid.</p>
-    </article>
-    <footer class="footer">My footer</footer>
-  </div>
 
 
-  <script type="text/javascript" src="js/d3-maps.js"></script>
+  <script type="text/javascript" src="js/calc.js"></script>
 
 
   <script type="text/javascript">
     $(document).ready(function () {
-      //WAYPOINTS
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint1'),
-        handler: function () {
-          // $('#schools-map svg').toggleClass("fixed");
 
-        }
-      })
+  
 
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint1a'),
-        handler: function () {
-          console.log("1a");
-          $('.percent-table').toggleClass("swirl-in-fwd");
-
-        }
-      })
-
-      //trigger the line chart
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint2'),
-        handler: function () {
-          // $('#line-chart').toggleClass("inline-block");
-          // $('#schools-map svg').toggleClass("fixed");
-          // $('#line-chart svg').toggleClass("fixed");
-
-        }
-      })
-
-      //trigger the bar chart
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint3'),
-        handler: function () {
-          // $('#line-chart').toggleClass("inline-block");
-          // $('#bar-chart').toggleClass("inline-block");
-          // $('#line-chart svg').toggleClass("fixed");
-          // $('#bar-chart svg').toggleClass("fixed");
-
-        }
-      })
-
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint4'),
-        handler: function () {
-
-          // $('#bar-chart').toggleClass("inline-block");
-          // $('#scale1 img').toggleClass("inline-block");
-          // $('#scale1 img').toggleClass("fixed");
-          // $('#bar-chart svg').toggleClass("fixed");
-
-        }
-      })
-
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint5'),
-        handler: function () {
-          // $('#scale1 img').toggleClass("inline-block");
-          // $('#scale1 img').toggleClass("fixed");
-          // $('#scale2 img').toggleClass("inline-block");
-          // $('#scale2 img').toggleClass("fixed");
-
-        }
-      })
-
-      var waypoint = new Waypoint({
-        element: document.getElementById('waypoint6'),
-        handler: function () {
-          // $('#scale2 img').toggleClass("inline-block");
-          // $('#scale2 img').toggleClass("fixed");
-
-        }
-      })
-
-
-      $('.map-hover-item').hover(function (e) {
-        var thisFip = $(this).data('fip');
-        if ($(this).data('fip2') != null) {
-          thisFip2 = $(this).data('fip2');
-          $('.fip_' + thisFip2).toggleClass('county-highlight');
-        }
-        console.log("fip_" + thisFip);
-
-        $('.fip_' + thisFip).toggleClass('county-highlight');
-
-      });
-
-      //TODO: POPULATE THE BOTTOM EXPLORER
-      for (i in ALL_DATA) {
-        //1) build the data into the DOM
-        var school = ALL_DATA[i];
-        var keys = Object.keys(school);
-        //1a. create the data wrappers
-        $('#data-list').append('<div style="margin:3vh;" class="data-lister" id="waypoint_' + school.school_code + '">' + school.official_school_name + '</div>');
-
-        //1b. iterate thru the data keys
-        for (j in keys) {
-          thisKey = keys[j];
-          $('#waypoint_' + school.school_code).attr('data-' + thisKey, school[thisKey]);
-        }
-
-        $('#school-list').append('<p>' + school.official_school_name + '</p>');
-
-
-        window["waypoint_" + school.school_code] = new Waypoint({
-          element: document.getElementById("waypoint_" + school.school_code),
-          handler: function () {
-            var school = this.element.dataset;
-            console.log("we've triggered for: " + school.official_school_name)
-          }
-        })
-
-      } //data for loop
 
 
     }); //doc ready
