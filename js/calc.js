@@ -3,7 +3,7 @@ $(document).ready(function(){
 
   function line_plot(selector, isJustAxis, range_val1, range_val2) {
     var width = 600,
-    height = 200;
+    height = 100;
 
     var data = [0, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100];
 
@@ -130,6 +130,12 @@ $(document).ready(function(){
         .attr( "stroke", "#999" )
         .attr( "d", geoPath );
       }
+
+      // $('')
+      // .transition()
+      // .attr("r", 8)
+      // .attr("r", 50)
+      // .duration(1200);
      
     } //nc_map
 
@@ -495,7 +501,7 @@ function line_chart(selector, file_name, isJson, json_data){
               var school = ALL_DATA[i];
               var keys = Object.keys(school);
               //1a. create the data wrappers
-              $('#data-list').append('<div class="data-lister" id="waypoint_' + school.school_code + '"><h2 class="lister__school_name">' + school.official_school_name + '</h2></div>');
+              $('#data-list').append('<div class="data-lister" id="waypoint_' + school.school_code + '"><div><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '<i id="caret_' + school.school_code + '" class="fa fa-caret-right" aria-hidden="true"></i></h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
       
               //1b. iterate thru the data keys
               for (j in keys) {
@@ -524,7 +530,13 @@ function line_chart(selector, file_name, isJson, json_data){
               })
 
               $('#open_' + school.school_code).click(function(){
+                var school_code = $(this).parent().data('school_code');
                 $(this).parent().parent().toggleClass("expand");
+                console.log($('#caret_' + school_code))
+                $('#caret_' + school_code).toggleClass("fa-caret-right");
+                $('#caret_' + school_code).toggleClass("fa-caret-down");
+       
+                
                 Waypoint.refreshAll()
 
               });
@@ -541,17 +553,19 @@ function line_chart(selector, file_name, isJson, json_data){
               thisDiv = $(div_id);
 
               //PEEK
-              thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p><p id="open_' + school.school_code + '">Click here to view more</p></div>')
+              thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p></div>')
       
       
               //TODO: style
-              thisDiv.append('<h4 class="lister__school_district">' + school.district + '</h4>');
+              // thisDiv.append('<h4 class="lister__school_district">' + school.district + '</h4>');
+
+                //TODO: add address label
+                thisDiv.append('<svg id="map_' + school.school_code + '" viewbox="0 100 960 300"></svg>');
     
               //TODO: style
-              thisDiv.append('<h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017</h4>')
+              thisDiv.append('<h3 class="lister__subhead">Restart Status Notes</h3><h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017.</h4>')
       
-              //TODO: add address label
-              thisDiv.append('<svg id="map_' + school.school_code + '" viewbox="0 0 960 500"></svg>');
+            
               //selector, json_file, isSingle
               var coord = [school.longitude, school.latitude];
               nc_map("#map_" + school.school_code, "nc-counties.json", coord,  true)
@@ -612,7 +626,7 @@ function line_chart(selector, file_name, isJson, json_data){
 
     
               //TODO: maintain bar order here
-              thisDiv.append('<svg id="race_' + school.school_code + '" width="400" height="200" viewbox="0 0 400 200"></svg>');
+              thisDiv.append('<h3 class="lister__subhead">Racial/Ethnic Breakdown</h3><svg id="race_' + school.school_code + '" width="400" height="200" viewbox="0 0 400 200"></svg>');
               var race_ethn = [
                 {"label": "Asian ", "value": school.asian_percentage},
                 {"label": "Hispanic ", "value": school.hispanic_percentage},
@@ -626,7 +640,10 @@ function line_chart(selector, file_name, isJson, json_data){
 
       
               //TODO: econom disadv (add the bar)
-              thisDiv.append('<h4 class="lister__econ_disadv">Percent of students economically disadvantaged: ' + school.percent_economically_disadvantaged + '</h4>')
+              thisDiv.append('<h3 class="lister__subhead">Percentage Economically Disadvantaged</h3><h4 class="lister__econ_disadv">' + school.percent_economically_disadvantaged + ' of students are economically disadvantaged.</h4><div id="econdis_' + school.school_code + '"></div>');
+
+              line_plot('#econdis_' + school.school_code,false,40,45);
+              
 
       
             }
