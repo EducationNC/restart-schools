@@ -80,6 +80,10 @@ shape-rendering: geometricPrecision!important;
   stroke-width:2px;
 }
 
+.line-plot-label{
+  font-size:.6em;
+  fill:black;
+}
 
 /*other*/
 .text-wrapper{

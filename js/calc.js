@@ -1,6 +1,65 @@
 $(document).ready(function(){
 
 
+  function line_plot(selector, isJustAxis, range_val1, range_val2) {
+    var width = 600,
+    height = 200;
+
+    var data = [0, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100];
+
+    // Append SVG 
+    var svg = d3.select(selector)
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+    // Create scale
+    var scale = d3.scaleLinear()
+                  .domain([d3.min(data), d3.max(data)])
+                  .range([0, width - 100]);
+
+    // Add scales to axis
+    var x_axis = d3.axisBottom()
+                  .scale(scale);
+
+    var graphic = svg.append("g")
+    .attr("transform", "translate(10, 40)");
+
+    //Append group and insert axis
+    graphic.append("g")
+      .call(x_axis);
+
+  if (!isJustAxis){
+    graphic.append("g")
+      .append("line")
+      .attr("x1", scale(range_val1))
+      .attr("x2", scale(range_val2))
+      .attr("stroke", "red")
+      .attr("stroke-width", 2);
+
+    graphic.append("g")
+      .append("circle")
+      .attr("r", 3)
+      .attr("transform", "translate(" + scale(range_val1) + ",0)");
+
+    graphic.append("g")  
+      .append("circle")
+      .attr("r", 3)
+      .attr("transform", "translate(" + scale(range_val1) + ",0)");
+
+    graphic.append("g")
+      .append("text")
+      .attr("class", "line-plot-label")
+      .text("Between " + range_val1 + " and " + range_val2 + ".")
+      .attr("x", scale(range_val1))
+      .attr("y", -15);
+    }
+    
+
+  }
+
+  line_plot("#scale1", true, 45, 50); 
+
   function nc_map(selector, json_file, coord, isSingle){
     //TODO: figure out how to size this shit: https://stackoverflow.com/questions/9566792/scale-svg-to-container-without-mask-crop
     var schools_width = $(selector).width()
@@ -451,7 +510,7 @@ function line_chart(selector, file_name, isJson, json_data){
       
               window["waypoint_" + school.school_code] = new Waypoint({
                 element: document.getElementById("waypoint_" + school.school_code),
-                offset: 20,
+                offset: 100,
                 handler: function () {
                   var school = this.element.dataset;
                   console.log("Trigger: " + school.official_school_name)
