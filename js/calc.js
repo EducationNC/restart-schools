@@ -118,7 +118,7 @@ $(document).ready(function(){
           .append("circle")
           .attr("cx", function (d) { return projection(d)[0]; })
           .attr("cy", function (d) { return projection(d)[1]; })
-          .attr("r", "8px")
+          .attr("r", "3px")
           .attr("fill", "red")
       } else {
         schools.selectAll( "path" )
@@ -126,8 +126,8 @@ $(document).ready(function(){
         .enter()
         .append( "path" )
         .attr("class", "school")
-        .attr( "fill", "#900" )
-        .attr( "stroke", "#999" )
+        .attr( "stroke", "transparent" )
+        .attr( "fill", "#555" )
         .attr( "d", geoPath );
       }
 
