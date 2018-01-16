@@ -280,6 +280,8 @@ function line_chart(selector, file_name, isJson, json_data){
   
   line_z = d3.scaleOrdinal(d3.schemeCategory10);
   
+  // console.log("line_width: " + line_height)
+
   var line = d3.line()
       .curve(d3.curveBasis)
       .x(function(d) { return line_x(d.date); })
@@ -325,11 +327,27 @@ function line_chart(selector, file_name, isJson, json_data){
   
     school.append("path")
         .attr("class", "line")
-        .attr("d", function(d) { return line(d.values); })
+        .attr("d", function(d) {  return line(d.values); })
         .style("stroke", function(d) {  return line_z(d.id); });
+
+    school.append("g")
+    .selectAll(".dot")
+      .data(function(d){
+        return d.values
+      })
+      .enter()
+      .append("circle")
+      .attr("r", 3)
+      .attr("cx", function(d, i){
+        return line_x(parseInt(d.date));
+      })
+      .attr("cy", function(d){
+        return line_y(d.score);
+      })
+      .attr("fill", "blue");
   
     school.append("text")
-        .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+        .datum(function(d) { return {id: d.id, value: d.values[0]}; })
         .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + parseInt(line_y(d.value.score)+10) + ")"; })
         .attr("x", 3)
         .attr("dy", "0.35em")
@@ -368,19 +386,33 @@ function line_chart(selector, file_name, isJson, json_data){
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) {  return line_z(d.id); });
+  
+  school.append("g")
+    .selectAll(".dot")
+      .data(function(d){
+        return d.values
+      })
+      .enter()
+      .append("circle")
+      .attr("r", 3)
+      .attr("cx", function(d, i){
+        return line_x(parseInt(d.date));
+      })
+      .attr("cy", function(d){
+        return line_y(d.score);
+      })
+      .attr("fill", "blue");
 
-  school.append("text")
-      .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + line_x(d.value.date) + "," + parseInt(line_y(d.value.score)+10) + ")"; })
-      .attr("x", 3)
-      .attr("dy", "0.35em")
-      .style("font", "10px sans-serif")
-      .text(function(d) { return d.id; });
+  // school.append("text")
+  //     .datum(function(d) { console.log(d.values[0]); return {id: d.id, value: d.values[0]}; })
+  //     .attr("class", "label")
+  //     .attr("transform", function(d) { console.log(line_x(d.value.date) + " refresh"); return "translate(370," + parseInt(line_y(d.value.score)+10) + ")"; })
+  //     .attr("x", 3)
+  //     .attr("dy", "0.35em")
+  //     .style("font", "10px sans-serif")
+  //     .text(function(d) { return d.id; });
   }
   
- 
-    
-
     // line_svg.append("g").selectAll("circle")
     //     .data(data)
     //     .enter().append("circle")
@@ -432,6 +464,7 @@ function line_chart(selector, file_name, isJson, json_data){
                 // $('#line-chart').toggleClass("inline-block");
                 // $('#schools-map svg').toggleClass("fixed");
                 // $('#line-chart svg').toggleClass("fixed");
+                
                 $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
       
               }
@@ -519,12 +552,10 @@ function line_chart(selector, file_name, isJson, json_data){
                 offset: 100,
                 handler: function () {
                   var school = this.element.dataset;
-                  console.log("Trigger: " + school.official_school_name)
-                  Waypoint.disableAll();
-                  Waypoint.enableAll();
-                  $('.data-lister').removeClass("peek");
-                  // $('.data-lister').removeClass("expand");
-                  $('#waypoint_' + school.school_code).toggleClass("peek");
+                  // Waypoint.disableAll();
+                  // Waypoint.enableAll();
+                  // $('.data-lister').removeClass("peek");
+                  // $('#waypoint_' + school.school_code).toggleClass("peek");
                   
                 }
               })
@@ -532,7 +563,7 @@ function line_chart(selector, file_name, isJson, json_data){
               $('#open_' + school.school_code).click(function(){
                 var school_code = $(this).parent().data('school_code');
                 $(this).parent().parent().toggleClass("expand");
-                console.log($('#caret_' + school_code))
+                console.log($('#caret_' + school_code).attr("class"));
                 $('#caret_' + school_code).toggleClass("fa-caret-right");
                 $('#caret_' + school_code).toggleClass("fa-caret-down");
        
@@ -573,7 +604,7 @@ function line_chart(selector, file_name, isJson, json_data){
               //TODO: elements of flex (build structure in a sheet to accept this)
       
               //TODO: student performance
-              thisDiv.append('<svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
+              thisDiv.append('<h3 class="lister__subhead">Student Performance</h3><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
 
               var spgschool = all_spg["" + school.school_code][0]
  
@@ -621,6 +652,8 @@ function line_chart(selector, file_name, isJson, json_data){
                   ]
                 }
               ];
+
+
               line_chart("#spg_" + school.school_code, "", true, spg_data);
 
 

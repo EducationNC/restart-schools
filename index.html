@@ -15,6 +15,8 @@
   <script src="js/d3.v4.min.js" charset="utf-8"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
   <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+
+
   <script src="data/restart-schools.geojson"></script>
   <script src="data/basic_data.js"></script>
   <script src="data/all_spg.js"></script>
@@ -25,12 +27,13 @@
   <!-- custom styles -->
   <link rel="stylesheet" href="css/main.css" type="text/css">
 
-  <style>
-  </style>
 
 </head>
 
 <body>
+    <!-- <input id="inp_school" type="text">
+     -->
+
   <!-- <header>
     <img src="images/header.jpg" alt="">
     <p style="margin-top:20px;">THIS IS A COMPELLING LEDE. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc,
@@ -42,7 +45,7 @@
       </header> -->
   <div id="top-explorer">
     
-    <div id="top-sidebar">
+    <!-- <div id="top-sidebar"> -->
         <div>
             <h1 id="waypoint1">Restart Schools Graphic</h1>
             <p>There are 103 schools approved for restart status in North Carolina.</p>
@@ -79,6 +82,10 @@
                 <td class="table-text">Halifax County</td>
                 <td class="table-num">49</td>
               </tr>
+              <tr data-fip="025" data-fip2="159" class="map-hover-item">
+                  <td class="table-text">Kannapolis City (in Cabarrus and Rowan counties)</td>
+                  <td class="table-num">41</td>
+                </tr>
               <tr data-fip="159" class="map-hover-item">
                 <td class="table-text">Rowan-Salisbury</td>
                 <td class="table-num">40</td>
@@ -102,10 +109,6 @@
               <tr data-fip="037" class="map-hover-item">
                 <td class="table-text">Chatham</td>
                 <td class="table-num">14</td>
-              </tr>
-              <tr data-fip="025" data-fip2="159" class="map-hover-item">
-                <td class="table-text">Kannapolis City (in Cabarrus and Rowan counties)</td>
-                <td class="table-num">41</td>
               </tr>
             </table>
           </div>
@@ -159,21 +162,26 @@
           <div id="waypoint6">
             <p>The median percentage of economically disadvantaged students in restart schools is greater than 90%.</p>
           </div>
-    </div><!--/#top-explorer-->
+    <!-- </div> -->
 
-</div>
+</div><!--/#top-explorer-->
   <hr id="waypoint6">
 
   <div id="bottom-title-wrapper">
      
-      <h3 class="bottom-header">Explore individual schools</h3>
+     
   </div>
   
 <div id="bottom-explorer">
 
+
   <!-- <div class="flex-center">
     <h1>Explore individual schools</h1>
   </div> -->
+  <h3 class="bottom-header">Explore individual schools</h3>
+  <div id="the-basics">
+      <input class="typeahead form-control" type="text" placeholder="Schools">
+    </div>
 
 
   <div id="data-list"></div>
@@ -181,15 +189,50 @@
 </div> <!--/#bottom-explorer -->
 
 
-
+<script src="js/typeahead.jquery.min.js"></script>
   <script type="text/javascript" src="js/calc.js"></script>
 
 
   <script type="text/javascript">
     $(document).ready(function () {
 
-  
+      var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+          var matches, substringRegex;
 
+          // an array that will be populated with substring matches
+          matches = [];
+
+          // regex used to determine if a string contains the substring `q`
+          substrRegex = new RegExp(q, 'i');
+
+          // iterate through the pool of strings and for any string that
+          // contains the substring `q`, add it to the `matches` array
+          $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+              matches.push(str);
+            }
+          });
+
+          cb(matches);
+        };
+      };
+
+      var schools = [];
+
+      for (i in ALL_DATA){
+        schools.push(ALL_DATA[i].official_school_name);
+      }
+
+      $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'schools',
+        source: substringMatcher(schools)
+      });
 
 
     }); //doc ready

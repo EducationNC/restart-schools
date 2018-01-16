@@ -28,11 +28,9 @@ h3, h4{
 }
 .county {
   stroke: #c1b4be;
-  fill: #f1f1f1;
+  fill:transparent;
   stroke-width: .4px;
 }
-
-
 .line {
   fill: none;
   stroke: steelblue;
@@ -250,8 +248,8 @@ header{
   padding-left: 12px;
 }
 
-h4.lister__school_name{
-  font-size: 1.8rem;
+.lister__school_name{
+  font-size: 1.5rem;
   margin-bottom: 0;
 }
 
@@ -326,6 +324,74 @@ i.fa.fa-caret-right, i.fa.fa-caret-down {
     -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
             box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   }
+}
+
+
+/* typeahead */
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {    /* used to be tt-dropdown-menu in older versions */
+  width: 422px;
+  margin-top: 4px;
+  padding: 4px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor,.tt-suggestion:hover {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+span.twitter-typeahead{
+  width:100%;
+}
+
+input.typeahead.form-control.tt-input{
+  border:none;
+  width:100%;
+}
+input.typeahead.form-control.tt-hint{
+  width:100%;
+  text-align:center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background:transparent!important;
+}
+
+input:focus {
+  outline: transparent;
+  outline-color: transparent;
+  outline-style: none;
+  outline-width: 0;
+  border-bottom:3px solid black!important;
 }
 
 
