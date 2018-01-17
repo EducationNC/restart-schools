@@ -60,7 +60,7 @@
               <span data-fip="183" class="map-link map-hover-item">Wake</span> counties. When adjusted for population,
               <span data-fip="083" class="map-link map-hover-item">Weldon City Public Schools</span> in Halifax County has the highest proportion of students in restart schools, with
               about 67 percent of their students in restart schools.</p>
-            <div id="table-map-wrap">
+            <!-- <div id="table-map-wrap"> -->
             <div id="percent-table-wrapper">
                 <h3>Percentage of students in restart schools by county
                     <span class="table-instr">Hover or click on a table row to see that county on the map.</span>
@@ -112,22 +112,24 @@
               </tr>
             </table>
           </div>
-          <div id="highlight-map">
+          <!-- <div id="highlight-map">
               <svg width="960" height="500"></svg>
-          </div>
+          </div> -->
             <p id="waypoint2"></p>
            
-          </div><!--#table-map-wrap-->
+          <!-- </div> -->
+          <!--#table-map-wrap-->
          
         </div>
+        <!--#waypoint1a-->
         
           <div>
             <p>(Explanation of how school performance grades work)</p>
             </div>
-            <div id="line-chart">
+            <!-- <div id="line-chart">
                 <svg width="960" height="500"></svg>
               </div>
-              
+               -->
             <div>
             <p>The median school performance grade (SPG) of restart schools in the past three school years is 47. The median SPG of
               all schools in the state in the past three schools years is 62.</p>
@@ -179,9 +181,9 @@
     <h1>Explore individual schools</h1>
   </div> -->
   <h3 class="bottom-header">Explore individual schools</h3>
-  <div id="the-basics">
+  <!-- <div id="the-basics">
       <input class="typeahead form-control" type="text" placeholder="Schools">
-    </div>
+    </div> -->
 
 
   <div id="data-list"></div>
@@ -233,6 +235,10 @@
         name: 'schools',
         source: substringMatcher(schools)
       });
+
+      $('#the-basics .typeahead').change(function(){
+        console.log($(this).val())
+      })
 
 
     }); //doc ready

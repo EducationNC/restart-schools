@@ -222,7 +222,7 @@ header{
     transition: height .4s, ease-in-out .4s;
   /* header and peek element are exactly 100px tall */
   display: grid;
-  grid-template-rows: 100px 100px 1fr;
+  grid-template-rows: 100px 1fr;
 }
 .peek{
   height:200px;
@@ -239,12 +239,12 @@ header{
 }
 .bottom-header{
   font-size: 2.8rem;
-  border-bottom: 3px solid #be3b3b;
+  /* border-bottom: 3px solid #be3b3b; */
   display: inline-block;
 }
 
 #data-list{
-  border-left: 4px solid #be3b3b;
+  border-left: 4px solid #c1b4be;
   padding-left: 12px;
 }
 

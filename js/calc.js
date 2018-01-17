@@ -437,7 +437,7 @@ function line_chart(selector, file_name, isJson, json_data){
       basic_bar("#bar-chart #bar-2", false, "data/restart_race.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
       nc_map("#highlight-map svg", "nc-counties.json", "", false);
-      line_chart("#line-chart svg", "example.tsv", false, "");
+      // line_chart("#line-chart svg", "example.tsv", false, "");
 
 
             //WAYPOINTS
@@ -584,7 +584,7 @@ function line_chart(selector, file_name, isJson, json_data){
               thisDiv = $(div_id);
 
               //PEEK
-              thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p></div>')
+              // thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p></div>')
       
       
               //TODO: style
