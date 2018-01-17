@@ -58,7 +58,9 @@ $(document).ready(function(){
 
   }
 
-  line_plot("#scale1", true, 45, 50); 
+  line_plot("#scale1", true, 45, 50);
+  line_plot("#scale2", false, 60, 65);
+  line_plot("#scale3", false, 90, 100); 
 
   function nc_map(selector, json_file, coord, isSingle){
     //TODO: figure out how to size this shit: https://stackoverflow.com/questions/9566792/scale-svg-to-container-without-mask-crop
