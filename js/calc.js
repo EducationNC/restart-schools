@@ -436,7 +436,7 @@ function line_chart(selector, file_name, isJson, json_data){
 
       //build those d3
       basic_bar("#bar-chart #bar-1", false, "data/restart_race.json");
-      basic_bar("#bar-chart #bar-2", false, "data/restart_race.json");
+      basic_bar("#bar-chart #bar-2", false, "data/restart_race_state.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
       nc_map("#highlight-map svg", "nc-counties.json", "", false);
       // line_chart("#line-chart svg", "example.tsv", false, "");
@@ -484,17 +484,14 @@ function line_chart(selector, file_name, isJson, json_data){
               }
             })
       
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint4'),
-              handler: function () {
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint4'),
+            //   handler: function () {
       
-                // $('#bar-chart').toggleClass("inline-block");
-                // $('#scale1 img').toggleClass("inline-block");
-                // $('#scale1 img').toggleClass("fixed");
-                // $('#bar-chart svg').toggleClass("fixed");
+
       
-              }
-            })
+            //   }
+            // })
       
             var waypoint = new Waypoint({
               element: document.getElementById('waypoint5'),
