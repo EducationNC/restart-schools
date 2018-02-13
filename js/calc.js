@@ -1,8 +1,14 @@
 $(document).ready(function(){
 
+  Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+  }
+
 
   function percent_table(){
-    console.log('table build')
+
     for (i in SCHOOL_POP){
       $('.percent-table').append('<tr data-fip="' + SCHOOL_POP[i].fip + '" class="map-hover-item"><td class="table-text">' + SCHOOL_POP[i].county_name + '</td><td class="table-num">' + SCHOOL_POP[i].percent_restart_by_pop + '%</td></tr>');
     }
@@ -75,7 +81,7 @@ $(document).ready(function(){
   line_plot("#scale3", false, 90, 100); 
 
   function nc_map(selector, json_file, coord, isSingle){
-    console.log(json_file)
+
     //TODO: figure out how to size this shit: https://stackoverflow.com/questions/9566792/scale-svg-to-container-without-mask-crop
     var schools_width = $(selector).width()
     schools_height = $(selector).height();
@@ -529,6 +535,7 @@ function line_chart(selector, file_name, isJson, json_data){
               for (i in ALL_DATA) {
               //1) build the data into the DOM
               var school = ALL_DATA[i];
+              console.log(school.official_school_name)
               var keys = Object.keys(school);
               //1a. create the data wrappers
               $('#data-list').append('<div class="data-lister" id="waypoint_' + school.school_code + '"><div><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '<i id="caret_' + school.school_code + '" class="fa fa-caret-right" aria-hidden="true"></i></h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
@@ -560,7 +567,7 @@ function line_chart(selector, file_name, isJson, json_data){
               $('#open_' + school.school_code).click(function(){
                 var school_code = $(this).parent().data('school_code');
                 $(this).parent().parent().toggleClass("expand");
-                console.log($('#caret_' + school_code).attr("class"));
+                // console.log($('#caret_' + school_code).attr("class"));
                 $('#caret_' + school_code).toggleClass("fa-caret-right");
                 $('#caret_' + school_code).toggleClass("fa-caret-down");
        
@@ -591,7 +598,7 @@ function line_chart(selector, file_name, isJson, json_data){
                 thisDiv.append('<svg id="map_' + school.school_code + '" viewbox="0 100 960 300"></svg>');
     
               //TODO: style
-              thisDiv.append('<h3 class="lister__subhead">Restart Status Notes</h3><h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017.</h4>')
+              //thisDiv.append('<h3 class="lister__subhead">Restart Status Notes</h3><h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017.</h4>')
       
             
               //selector, json_file, isSingle
@@ -603,9 +610,20 @@ function line_chart(selector, file_name, isJson, json_data){
               //TODO: student performance
               thisDiv.append('<h3 class="lister__subhead">Student Performance</h3><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
 
-              console.log('yo wtf')
+            
+              
 
-              var spgschool = all_spg["" + school.school_code][0]
+              var thisSchoolCode = school.school_code;
+              console.log(thisSchoolCode.toString().length)
+              if (thisSchoolCode.toString().length != 6){
+                thisSchoolCode = (thisSchoolCode).pad(6);
+                console.log("padded: " + thisSchoolCode)
+              }
+              
+              var thisSchoolCode = thisSchoolCode.toString();
+
+              var spgschool = spg_restart[thisSchoolCode]
+              console.log(spgschool)
  
               var spg_data = [
                 {
@@ -674,7 +692,7 @@ function line_chart(selector, file_name, isJson, json_data){
               //TODO: econom disadv (add the bar)
               thisDiv.append('<h3 class="lister__subhead">Percentage Economically Disadvantaged</h3><h4 class="lister__econ_disadv">' + school.percent_economically_disadvantaged + ' of students are economically disadvantaged.</h4><div id="econdis_' + school.school_code + '"></div>');
 
-              line_plot('#econdis_' + school.school_code,false,40,45);
+              // line_plot('#econdis_' + school.school_code,false,40,45);
               
 
       

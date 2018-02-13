@@ -45,6 +45,9 @@ gr_washington <- ggplot(aes(x = year, y = spg_score), data=spg_washington) +
   geom_jitter(position = position_jitter(width = .1)) +
   theme_fivethirtyeight() + scale_colour_fivethirtyeight()
 
+spg_yo <- spg %>%
+  filter(lea_name.null())
+
 gr_all + facet_grid(. ~ lea_name)
 
 

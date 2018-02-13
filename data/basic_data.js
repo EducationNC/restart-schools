@@ -1,4 +1,4 @@
-const ALL_DATA = [
+const ALL_DATA= [
  {
    "official_school_name": "Haw River Elementary",
    "region": "Piedmont-Tirad",
