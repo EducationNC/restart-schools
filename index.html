@@ -17,9 +17,10 @@
   <script src="https://d3js.org/d3-queue.v2.min.js"></script>
   <script srce="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.1.0/d3-annotation.independent.min.js"></script>
 
-  <script src="data/restart-schools.geojson"></script>
+  <script src="data/restart-schools-2.geojson"></script>
   <script src="data/basic_data.js"></script>
   <script src="data/all_spg.js"></script>
+  <script src="data/school_pop_pullouts.js"></script>
 
   <!-- font awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
@@ -55,60 +56,127 @@
           </div>
           <div id="waypoint1a">
             <p>Most restart schools are located in
-              <span data-fip="063" class="map-link map-hover-item">Durham</span>,
-              <span class="map-link map-hover-item" data-fip="159">Rowan-Salisbury</span>, and
+              <span data-fip="159" class="map-link map-hover-item">Rowan</span>,
+              <span data-fip="119" class="map-link map-hover-item" >Mecklenburg</span>, and
               <span data-fip="183" class="map-link map-hover-item">Wake</span> counties. When adjusted for population,
-              <span data-fip="083" class="map-link map-hover-item">Weldon City Public Schools</span> in Halifax County has the highest proportion of students in restart schools, with
-              about 67 percent of their students in restart schools.</p>
+              <span data-fip="185" class="map-link map-hover-item">Warren County Public Schools</span> has the highest proportion of students in restart schools, with
+              about 70.2 percent of their students in restart schools.</p>
             <!-- <div id="table-map-wrap"> -->
             <div id="percent-table-wrapper">
                 <h3>Percentage of students in restart schools by county
                     <span class="table-instr">Hover or click on a table row to see that county on the map.</span>
                 </h3>
-            <table class="table percent-table">   
-              <tr>
+            <table class="table percent-table">  
                 <th class="table-text">School district</th>
                 <th class="table-text percent-students">Percent</th>
               </tr>
               <tr data-fip="083" class="map-hover-item">
-                <td class="table-text">Weldon City (located in Halifax County)</td>
-                <td class="table-num">67%</td>
+                <td class="table-text">Warren County Schools</td>
+                <td class="table-num">70.2%</td>
               </tr>
               <tr data-fip="187" class="map-hover-item">
-                <td class="table-text">Washington</td>
-                <td class="table-num">50</td>
+                <td class="table-text">Weldon City</td>
+                <td class="table-num">66.9%</td>
               </tr>
               <tr data-fip="083" class="map-hover-item">
-                <td class="table-text">Halifax County</td>
-                <td class="table-num">49</td>
+                  <td class="table-text">Northampton County</td>
+                  <td class="table-num">58.3%</td>
+                </tr>
+              <tr data-fip="083" class="map-hover-item">
+                <td class="table-text">Washington County Public Schools</td>
+                <td class="table-num">50%</td>
               </tr>
               <tr data-fip="025" data-fip2="159" class="map-hover-item">
-                  <td class="table-text">Kannapolis City (in Cabarrus and Rowan counties)</td>
-                  <td class="table-num">41</td>
+                  <td class="table-text">Halifax County Public Schools</td>
+                  <td class="table-num">49.1%</td>
                 </tr>
               <tr data-fip="159" class="map-hover-item">
-                <td class="table-text">Rowan-Salisbury</td>
-                <td class="table-num">40</td>
+                <td class="table-text">Kannapolis City Public Schools</td>
+                <td class="table-num">41.3%</td>
               </tr>
               <tr data-fip="131" class="map-hover-item">
-                <td class="table-text">Northampton County</td>
-                <td class="table-num">26</td>
+                <td class="table-text">Rowan-Salisbury Public Schools</td>
+                <td class="table-num">40.2%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Vance County Public Schools</td>
+                <td class="table-num">21.2%</td>
               </tr>
               <tr data-fip="063" class="map-hover-item">
-                <td class="table-text">Durham</td>
-                <td class="table-num">25</td>
+                <td class="table-text">Bertie County Public Schools</td>
+                <td class="table-num">20.3%</td>
               </tr>
               <tr data-fip="015" class="map-hover-item">
-                <td class="table-text">Bertie</td>
-                <td class="table-num">20</td>
+                <td class="table-text">Edgecombe County Public Schools</td>
+                <td class="table-num">19.4%</td>
               </tr>
               <tr data-fip="139" class="map-hover-item">
                 <td class="table-text">Elizabeth City/Pasquotank</td>
-                <td class="table-num">17</td>
+                <td class="table-num">17%</td>
               </tr>
               <tr data-fip="037" class="map-hover-item">
-                <td class="table-text">Chatham</td>
-                <td class="table-num">14</td>
+                <td class="table-text">Chatham County Public Schools</td>
+                <td class="table-num">14.1%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Gaston County Public Schools</td>
+                <td class="table-num">13.1%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Cabarrus County Public Schools</td>
+                <td class="table-num">11.7%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Iredell Statesville County Public Schools</td>
+                <td class="table-num">11.4%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Johnston County Public Schools</td>
+                <td class="table-num">7.9%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Wake County Public Schools </td>
+                <td class="table-num">6.2%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Craven County Public Schools</td>
+                <td class="table-num">5.6%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Onslow County Public Schools</td>
+                <td class="table-num">4.6%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Union County Public Schools</td>
+                <td class="table-num">4.2%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Cleveland County Public Schools</td>
+                <td class="table-num">4%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Pitt County Public Schools</td>
+                <td class="table-num">3.4%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Durham County Public Schools</td>
+                <td class="table-num">3.4%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">New Hanover County Public Schools</td>
+                <td class="table-num">3.3%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Wayne County Schools</td>
+                <td class="table-num">2.6%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Alamance-Burlington County Public Schools</td>
+                <td class="table-num">2.2%</td>
+              </tr>
+              <tr data-fip="037" class="map-hover-item">
+                <td class="table-text">Winston Salem-Forsyth County Public Schools</td>
+                <td class="table-num">0.5%</td>
               </tr>
             </table>
           </div>
@@ -122,14 +190,17 @@
          
         </div>
         <!--#waypoint1a-->
+
+        <div id="bar-chart" class="story">
+            <p>Racial/Ethnic Makeup of all schools:</p>
+            <svg id="bar-1" width="400" height="200"></svg>
+            <p>Racial/Ethnic Makeup of restart schools:</p>
+            <svg id="bar-2" width="400" height="200"></svg>
+          </div>
         
-          <div>
+          <!-- <div>
             <p>(Explanation of how school performance grades work)</p>
             </div>
-            <!-- <div id="line-chart">
-                <svg width="960" height="500"></svg>
-              </div>
-               -->
             <div>
             <p>The median school performance grade (SPG) of restart schools in the past three school years is 47. The median SPG of
               all schools in the state in the past three schools years is 62.</p>
@@ -139,20 +210,8 @@
             <p>show: a bar graph like the one in my original sketch showing racial/ethnic breakdown, but with two sets of bars to compare
               statewide vs restart text: (some sentence describing an interesting pullout from this data)</p>
           </div>
-          <div id="bar-chart" class="story">
-              <svg id="bar-1" width="400" height="200"></svg>
-              <svg id="bar-2" width="400" height="200"></svg>
-            </div>
+
         
-        
-          <!-- <div id="waypoint4">
-            <p>The percentage of economically disadvantaged students is reported by the state in ranges: (Draw an svg line showing the
-              ranges)
-            </p>
-          </div>
-          <div id="scale1">
-          </div> -->
-            
           <div id="waypoint5">
             <p> The median percentage of economically disadvantaged students in the state is between 60 and 65 percent.
             </p>
@@ -165,7 +224,7 @@
             <p>The median percentage of economically disadvantaged students in restart schools is greater than 90%.</p>
           </div>
           <div id="scale3">
-            </div>
+            </div> -->
     <!-- </div> -->
 
 </div><!--/#top-explorer-->

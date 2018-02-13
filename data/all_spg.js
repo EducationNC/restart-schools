@@ -1,4 +1,4 @@
-var all_spg = {
+const all_spg = {
    "10357": [
       {
          "lea": 10,

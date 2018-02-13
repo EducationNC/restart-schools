@@ -1,6 +1,18 @@
 $(document).ready(function(){
 
 
+  function percent_table(){
+    console.log('table build')
+    for (i in SCHOOL_POP){
+      $('.percent-table').append('<tr data-fip="' + SCHOOL_POP[i].fip + '" class="map-hover-item"><td class="table-text">' + SCHOOL_POP[i].county_name + '</td><td class="table-num">' + SCHOOL_POP[i].percent_restart_by_pop + '%</td></tr>');
+    }
+    
+    
+  }
+
+  percent_table();
+
+
   function line_plot(selector, isJustAxis, range_val1, range_val2) {
     var width = 600,
     height = 100;
@@ -63,6 +75,7 @@ $(document).ready(function(){
   line_plot("#scale3", false, 90, 100); 
 
   function nc_map(selector, json_file, coord, isSingle){
+    console.log(json_file)
     //TODO: figure out how to size this shit: https://stackoverflow.com/questions/9566792/scale-svg-to-container-without-mask-crop
     var schools_width = $(selector).width()
     schools_height = $(selector).height();
@@ -443,46 +456,38 @@ function line_chart(selector, file_name, isJson, json_data){
 
 
             //WAYPOINTS
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint1'),
-              handler: function () {
-                // $('#schools-map svg').toggleClass("fixed");
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint1'),
+            //   handler: function () {
       
-              }
-            })
+            //   }
+            // })
       
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint1a'),
-              handler: function () {
-                $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint1a'),
+            //   handler: function () {
+            //     $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
       
-              }
-            })
+            //   }
+            // })
       
             //trigger the line chart
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint2'),
-              handler: function () {
-                // $('#line-chart').toggleClass("inline-block");
-                // $('#schools-map svg').toggleClass("fixed");
-                // $('#line-chart svg').toggleClass("fixed");
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint2'),
+            //   handler: function () {
                 
-                $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
+            //     $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
       
-              }
-            })
+            //   }
+            // })
       
             //trigger the bar chart
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint3'),
-              handler: function () {
-                // $('#line-chart').toggleClass("inline-block");
-                // $('#bar-chart').toggleClass("inline-block");
-                // $('#line-chart svg').toggleClass("fixed");
-                // $('#bar-chart svg').toggleClass("fixed");
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint3'),
+            //   handler: function () {
       
-              }
-            })
+            //   }
+            // })
       
             // var waypoint = new Waypoint({
             //   element: document.getElementById('waypoint4'),
@@ -493,25 +498,18 @@ function line_chart(selector, file_name, isJson, json_data){
             //   }
             // })
       
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint5'),
-              handler: function () {
-                // $('#scale1 img').toggleClass("inline-block");
-                // $('#scale1 img').toggleClass("fixed");
-                // $('#scale2 img').toggleClass("inline-block");
-                // $('#scale2 img').toggleClass("fixed");
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint5'),
+            //   handler: function () {
       
-              }
-            })
+            //   }
+            // })
       
-            var waypoint = new Waypoint({
-              element: document.getElementById('waypoint6'),
-              handler: function () {
-                // $('#scale2 img').toggleClass("inline-block");
-                // $('#scale2 img').toggleClass("fixed");
-      
-              }
-            })
+            // var waypoint = new Waypoint({
+            //   element: document.getElementById('waypoint6'),
+            //   handler: function () {
+            //   }
+            // })
       
       
             $('.map-hover-item').hover(function (e) {
@@ -604,6 +602,8 @@ function line_chart(selector, file_name, isJson, json_data){
       
               //TODO: student performance
               thisDiv.append('<h3 class="lister__subhead">Student Performance</h3><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
+
+              console.log('yo wtf')
 
               var spgschool = all_spg["" + school.school_code][0]
  
