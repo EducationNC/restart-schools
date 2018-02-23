@@ -1,210 +1,226 @@
 const SCHOOL_POP = [
  {
-   "county_name": "Halifax",
-   "fip": 83,
-   "district_pop": "2,732",
-   "num_of_restart_schools": 6,
-   "restart_school_pop": 1933,
-   "percent_restart_by_pop": 70.8
- },
- {
-   "county_name": "Warren",
+   "district": "Warren County Schools",
+   "percent_restart_by_pop": "69.0%",
    "fip": 185,
-   "district_pop": "2,238",
+   "district_pop": "2,126",
    "num_of_restart_schools": 4,
-   "restart_school_pop": 1570,
-   "percent_restart_by_pop": 70.2
+   "restart_school_pop": "  1,468 "
  },
  {
-   "county_name": "Northampton",
+   "district": "Weldon City Schools",
+   "percent_restart_by_pop": "59.0%",
+   "fip": 83,
+   "district_pop": "864",
+   "num_of_restart_schools": 2,
+   "restart_school_pop": "  510 "
+ },
+ {
+   "district": "Northampton County Schools",
+   "percent_restart_by_pop": "55.5%",
    "fip": 131,
-   "district_pop": "1,842",
+   "district_pop": "1,730",
    "num_of_restart_schools": 3,
-   "restart_school_pop": 1073,
-   "percent_restart_by_pop": 58.3
+   "restart_school_pop": "  961 "
  },
  {
-   "county_name": "Washington",
+   "district": "Washington County Schools",
+   "percent_restart_by_pop": "48.9%",
    "fip": 187,
-   "district_pop": "1,528",
+   "district_pop": "1,456",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 764,
-   "percent_restart_by_pop": 50
+   "restart_school_pop": "  712 "
  },
  {
-   "county_name": "Rowan",
-   "fip": 159,
-   "district_pop": "19,525",
-   "num_of_restart_schools": 13,
-   "restart_school_pop": 7846,
-   "percent_restart_by_pop": 40.2
- },
- {
-   "county_name": "Vance",
-   "fip": 181,
-   "district_pop": "6,296",
-   "num_of_restart_schools": 2,
-   "restart_school_pop": 1337,
-   "percent_restart_by_pop": 21.2
- },
- {
-   "county_name": "Bertie",
-   "fip": 15,
-   "district_pop": "2,280",
-   "num_of_restart_schools": 1,
-   "restart_school_pop": 462,
-   "percent_restart_by_pop": 20.3
- },
- {
-   "county_name": "Edgecombe",
-   "fip": 65,
-   "district_pop": "5,953",
+   "district": "Halifax County Schools",
+   "percent_restart_by_pop": "46.1%",
+   "fip": 83,
+   "district_pop": "2,566",
    "num_of_restart_schools": 4,
-   "restart_school_pop": 1157,
-   "percent_restart_by_pop": 19.4
+   "restart_school_pop": "  1,182 "
  },
  {
-   "county_name": "Cabarrus",
+   "district": "Kannapolis City Schools",
+   "percent_restart_by_pop": "44.1%",
    "fip": 25,
-   "district_pop": "31,260",
-   "num_of_restart_schools": 7,
-   "restart_school_pop": 5840,
-   "percent_restart_by_pop": 18.7
- },
- {
-   "county_name": "Pasquotank",
-   "fip": 139,
-   "district_pop": "5,739",
+   "district_pop": "5,256",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 978,
-   "percent_restart_by_pop": 17
+   "restart_school_pop": "  2,316 "
  },
  {
-   "county_name": "Chatham",
-   "fip": 0,
-   "district_pop": "8,436",
-   "num_of_restart_schools": 2,
-   "restart_school_pop": 1192,
-   "percent_restart_by_pop": 14.1
- },
- {
-   "county_name": "Gaston",
-   "fip": 71,
-   "district_pop": "31,285",
-   "num_of_restart_schools": 6,
-   "restart_school_pop": 4094,
-   "percent_restart_by_pop": 13.1
- },
- {
-   "county_name": "Iredell",
-   "fip": 97,
-   "district_pop": "20,643",
-   "num_of_restart_schools": 4,
-   "restart_school_pop": 2352,
-   "percent_restart_by_pop": 11.4
- },
- {
-   "county_name": "Johnston",
-   "fip": 101,
-   "district_pop": "34,452",
-   "num_of_restart_schools": 5,
-   "restart_school_pop": 2712,
-   "percent_restart_by_pop": 7.9
- },
- {
-   "county_name": "Wake",
-   "fip": 183,
-   "district_pop": "156,612",
-   "num_of_restart_schools": 12,
-   "restart_school_pop": 9694,
-   "percent_restart_by_pop": 6.2
- },
- {
-   "county_name": "Mecklenburg",
-   "fip": 119,
-   "district_pop": "145,444",
+   "district": "Rowan-Salisbury Schools",
+   "percent_restart_by_pop": "38.6%",
+   "fip": 159,
+   "district_pop": "19,135",
    "num_of_restart_schools": 13,
-   "restart_school_pop": 8467,
-   "percent_restart_by_pop": 5.8
+   "restart_school_pop": "  7,392 "
  },
  {
-   "county_name": "Craven",
+   "district": "Bertie County Schools",
+   "percent_restart_by_pop": "21.1%",
+   "fip": 15,
+   "district_pop": "2,170",
+   "num_of_restart_schools": 1,
+   "restart_school_pop": "  457 "
+ },
+ {
+   "district": "Vance County Schools",
+   "percent_restart_by_pop": "19.0%",
+   "fip": 181,
+   "district_pop": "6,027",
+   "num_of_restart_schools": 2,
+   "restart_school_pop": "  1,147 "
+ },
+ {
+   "district": "Elizabeth City-Pasquotank Public Schools",
+   "percent_restart_by_pop": "16.3%",
+   "fip": 139,
+   "district_pop": "5,606",
+   "num_of_restart_schools": 2,
+   "restart_school_pop": "  914 "
+ },
+ {
+   "district": "Edgecombe County Schools",
+   "percent_restart_by_pop": "14.5%",
+   "fip": 65,
+   "district_pop": "5,944",
+   "num_of_restart_schools": 4,
+   "restart_school_pop": "  861 "
+ },
+ {
+   "district": "Gaston County Schools",
+   "percent_restart_by_pop": "13.0%",
+   "fip": 71,
+   "district_pop": "31,266",
+   "num_of_restart_schools": 6,
+   "restart_school_pop": "  4,056 "
+ },
+ {
+   "district": "Chatham County Schools",
+   "percent_restart_by_pop": "13.9%",
+   "fip": 37,
+   "district_pop": "8,636",
+   "num_of_restart_schools": 2,
+   "restart_school_pop": "  1,201 "
+ },
+ {
+   "district": "Iredell-Statesville Schools",
+   "percent_restart_by_pop": "10.6%",
+   "fip": 97,
+   "district_pop": "20,300",
+   "num_of_restart_schools": 4,
+   "restart_school_pop": "  2,153 "
+ },
+ {
+   "district": "Cabarrus County Schools",
+   "percent_restart_by_pop": "10.4%",
+   "fip": 25,
+   "district_pop": "31,876",
+   "num_of_restart_schools": 5,
+   "restart_school_pop": "  3,318 "
+ },
+ {
+   "district": "Johnston County Schools",
+   "percent_restart_by_pop": "8.0%",
+   "fip": 101,
+   "district_pop": "34,964",
+   "num_of_restart_schools": 5,
+   "restart_school_pop": "  2,808 "
+ },
+ {
+   "district": "Craven County Schools",
+   "percent_restart_by_pop": "5.9%",
    "fip": 49,
-   "district_pop": "14,004",
+   "district_pop": "13,860",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 783,
-   "percent_restart_by_pop": 5.6
+   "restart_school_pop": "  820 "
  },
  {
-   "county_name": "Onslow",
+   "district": "Wake County Public Schools",
+   "percent_restart_by_pop": "5.8%",
+   "fip": 183,
+   "district_pop": "158,394",
+   "num_of_restart_schools": 12,
+   "restart_school_pop": "  9,195 "
+ },
+ {
+   "district": "Charlotte-Mecklenburg Schools",
+   "percent_restart_by_pop": "5.6%",
+   "fip": 119,
+   "district_pop": "146,571",
+   "num_of_restart_schools": 13,
+   "restart_school_pop": "  8,151 "
+ },
+ {
+   "district": "Onslow County Schools",
+   "percent_restart_by_pop": "4.8%",
    "fip": 133,
-   "district_pop": "25,702",
+   "district_pop": "25,903",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 1187,
-   "percent_restart_by_pop": 4.6
+   "restart_school_pop": "  1,253 "
  },
  {
-   "county_name": "Union",
+   "district": "Union County Public Schools",
+   "percent_restart_by_pop": "4.4%",
    "fip": 179,
-   "district_pop": "41,873",
+   "district_pop": "41,349",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 1748,
-   "percent_restart_by_pop": 4.2
+   "restart_school_pop": "  1,824 "
  },
  {
-   "county_name": "Cleveland",
+   "district": "Cleveland County Schools",
+   "percent_restart_by_pop": "4.0%",
    "fip": 45,
-   "district_pop": "14,906",
+   "district_pop": "14,662",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 593,
-   "percent_restart_by_pop": 4
+   "restart_school_pop": "  592 "
  },
  {
-   "county_name": "Pitt",
-   "fip": 147,
-   "district_pop": "23,239",
-   "num_of_restart_schools": 2,
-   "restart_school_pop": 791,
-   "percent_restart_by_pop": 3.4
- },
- {
-   "county_name": "Durham",
+   "district": "Durham Public Schools",
+   "percent_restart_by_pop": "3.5%",
    "fip": 63,
-   "district_pop": "33,144",
+   "district_pop": "32,907",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 1126,
-   "percent_restart_by_pop": 3.4
+   "restart_school_pop": "  1,151 "
  },
  {
-   "county_name": "New Hanover",
-   "fip": 129,
-   "district_pop": "25,901",
+   "district": "Pitt County Schools",
+   "percent_restart_by_pop": "3.1%",
+   "fip": 147,
+   "district_pop": "23,224",
    "num_of_restart_schools": 2,
-   "restart_school_pop": 862,
-   "percent_restart_by_pop": 3.3
+   "restart_school_pop": "  723 "
  },
  {
-   "county_name": "Wayne",
+   "district": "Wayne County Public Schools",
+   "percent_restart_by_pop": "2.9%",
    "fip": 191,
-   "district_pop": "18,505",
+   "district_pop": "18,321",
    "num_of_restart_schools": 1,
-   "restart_school_pop": 489,
-   "percent_restart_by_pop": 2.6
+   "restart_school_pop": "  527 "
  },
  {
-   "county_name": "Alamance",
+   "district": "New Hanover County Schools",
+   "percent_restart_by_pop": "2.6%",
+   "fip": 129,
+   "district_pop": "26,096",
+   "num_of_restart_schools": 2,
+   "restart_school_pop": "  687 "
+ },
+ {
+   "district": "Alamance-Burlington Schools",
+   "percent_restart_by_pop": "2.2%",
    "fip": 1,
-   "district_pop": "22,600",
+   "district_pop": "22,571",
    "num_of_restart_schools": 1,
-   "restart_school_pop": 505,
-   "percent_restart_by_pop": 2.2
+   "restart_school_pop": "  506 "
  },
  {
-   "county_name": "Forsyth",
+   "district": "Winston-Salem/Forsyth County Schools",
+   "percent_restart_by_pop": "0.4%",
    "fip": 67,
-   "district_pop": "53,947",
+   "district_pop": "54,192",
    "num_of_restart_schools": 1,
-   "restart_school_pop": 250,
-   "percent_restart_by_pop": 0.5
+   "restart_school_pop": "  212 "
  }
 ]

@@ -10,7 +10,7 @@ $(document).ready(function(){
   function percent_table(){
 
     for (i in SCHOOL_POP){
-      $('.percent-table').append('<tr data-fip="' + SCHOOL_POP[i].fip + '" class="map-hover-item"><td class="table-text">' + SCHOOL_POP[i].county_name + '</td><td class="table-num">' + SCHOOL_POP[i].percent_restart_by_pop + '%</td></tr>');
+      $('.percent-table').append('<tr data-fip="' + SCHOOL_POP[i].fip + '" class="map-hover-item"><td class="table-text">' + SCHOOL_POP[i].district + '</td><td class="table-num">' + SCHOOL_POP[i].percent_restart_by_pop + '</td></tr>');
     }
     
     
