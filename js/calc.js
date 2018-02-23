@@ -348,7 +348,7 @@ function line_chart(selector, file_name, isJson, json_data){
   
     school.append("path")
         .attr("class", "line")
-        .attr("d", function(d) {  return line(d.values); })
+        .attr("d", function(d) {  console.log("d.values: " + line(d.values)); return line(d.values); })
         .style("stroke", function(d) {  return line_z(d.id); });
 
     school.append("g")
@@ -360,6 +360,7 @@ function line_chart(selector, file_name, isJson, json_data){
       .append("circle")
       .attr("r", 3)
       .attr("cx", function(d, i){
+        console.log(d)
         return line_x(parseInt(d.date));
       })
       .attr("cy", function(d){
@@ -614,16 +615,20 @@ function line_chart(selector, file_name, isJson, json_data){
               
 
               var thisSchoolCode = school.school_code;
-              console.log(thisSchoolCode.toString().length)
+             
+              
               if (thisSchoolCode.toString().length != 6){
                 thisSchoolCode = (thisSchoolCode).pad(6);
-                console.log("padded: " + thisSchoolCode)
+  
               }
               
               var thisSchoolCode = thisSchoolCode.toString();
+        
 
               var spgschool = spg_restart[thisSchoolCode]
+
               console.log(spgschool)
+
  
               var spg_data = [
                 {
