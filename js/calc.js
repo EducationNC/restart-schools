@@ -455,7 +455,7 @@ function line_chart(selector, file_name, isJson, json_data){
 
       //build those d3
       basic_bar("#bar-chart #bar-1", false, "data/restart_race.json");
-      basic_bar("#bar-chart #bar-2", false, "data/restart_race_state.json");
+      basic_bar("#bar-chart #bar-2", false, "data/race_state.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
       nc_map("#highlight-map svg", "nc-counties.json", "", false);
       // line_chart("#line-chart svg", "example.tsv", false, "");
