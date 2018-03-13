@@ -30,6 +30,10 @@ h3, h4{
   display:none;
 }
 
+.school_dot{
+  fill-opacity:.7;
+}
+
 .school_dot:hover{
   fill:#561843;
 }
