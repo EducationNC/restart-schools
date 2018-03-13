@@ -208,13 +208,7 @@ $(document).ready(function(){
                 .attr("height", bar_y.bandwidth())
                 .attr("y", function(d) { return bar_y(d.label); })
                 .attr("width", function(d) {  return bar_x(d.value); })
-                .style('fill', '#BFDEFF')
-                .on('mouseover', function () {
-                    d3.select(this).transition().style('fill', '#2B24FF');
-                })
-                .on('mouseout', function () {
-                    d3.select(this).transition().style('fill', '#BFDEFF');
-                });
+                .style('fill', '#6F257F');
                 
                 g.append("g")
                 .attr("transform", "translate(10,-60)")
@@ -257,13 +251,7 @@ $(document).ready(function(){
                 .attr("height", bar_y.bandwidth())
                 .attr("y", function(d) { return bar_y(d.label); })
                 .attr("width", function(d) {  return bar_x(d.value); })
-                .style('fill', '#BFDEFF')
-                .on('mouseover', function () {
-                    d3.select(this).transition().style('fill', '#2B24FF');
-                })
-                .on('mouseout', function () {
-                    d3.select(this).transition().style('fill', '#BFDEFF');
-                });
+                .style('fill', '#6F257F');
                 
                 g.append("g")
                 .attr("transform", "translate(10,-60)")
