@@ -1,5 +1,16 @@
 $(document).ready(function(){
 
+  function filterData(school_code){
+              
+    $('.data-lister').hide();
+    
+    $('.data-lister[data-school_code="' + school_code + '"]').show();
+
+    $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
+  }
+
+  
+
   Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}
@@ -25,25 +36,21 @@ $(document).ready(function(){
 
     var data = [0, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100];
 
-    // Append SVG 
     var svg = d3.select(selector)
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height);
 
-    // Create scale
     var scale = d3.scaleLinear()
                   .domain([d3.min(data), d3.max(data)])
                   .range([0, width - 100]);
 
-    // Add scales to axis
     var x_axis = d3.axisBottom()
                   .scale(scale);
 
     var graphic = svg.append("g")
     .attr("transform", "translate(10, 40)");
 
-    //Append group and insert axis
     graphic.append("g")
       .call(x_axis);
 
@@ -87,18 +94,11 @@ $(document).ready(function(){
     schools_height = $(selector).height();
 
       var schools_svg = d3.select(selector);
-        // .append("div")
-        // .classed("svg-container", true)
-        // .append("svg")
-        // .attr("preserveAspectRatio", "xMinYMin meet")
-        // .attr("viewBox", "0 0 600 400")
-        // .classed("svg-content-responsive", true); 
 
       var projection = d3.geoAlbers()
       .center([7, 35.73])
       .rotate([85.8,.5])
       .scale(5500);
-      // .translate([schools_width / 2, schools_height / 2]);
 
       var geoPath = d3.geoPath()
       .projection(projection);
@@ -111,52 +111,58 @@ $(document).ready(function(){
 
       function ready(error, counties){
 
-      schools_svg.append("g")
+        var background = schools_svg.append("g");
+        var foreground = schools_svg.append("g")
+
+        var schools = schools_svg.append( "g" )
           .attr("x", 0)
-          .attr("y", 0)
-          .selectAll("path")
-          .data( topojson.feature(counties, counties.objects.counties).features)
-          .enter()
-          .append("path")
-          .attr( "d", geoPath )
-          .attr("class",function(d){
-            return "fip_" + d.properties.COUNTYFP + " county";
-          })
-          .attr( "fill", function(d){
-              return "#5656";
-          }); 
+          .attr("y", 0);
+
+    
      
-      }
 
+        background.append("g")
+        .attr("x", 0)
+        .attr("y", 0)
+        .selectAll("path")
+        .data( topojson.feature(counties, counties.objects.counties).features)
+        .enter()
+        .append("path")
+        .attr( "d", geoPath )
+        .attr("class",function(d){
+          return "fip_" + d.properties.COUNTYFP + " county";
+        })
+        .attr( "fill", function(d){
+            return "#5656";
+        }); 
 
-      var schools = schools_svg.append( "g" )
-      .attr("x", 0)
-      .attr("y", 0);
-
-      if (isSingle){
-        schools_svg.selectAll("circle")
-          .data([coord]).enter()
-          .append("circle")
-          .attr("cx", function (d) { return projection(d)[0]; })
-          .attr("cy", function (d) { return projection(d)[1]; })
-          .attr("r", "3px")
-          .attr("fill", "red")
-      } else {
-        schools.selectAll( "path" )
+        foreground.selectAll( "path" )
         .data( restartschools.features )
         .enter()
         .append( "path" )
-        .attr("class", "school")
+        .attr("class", function(d,i){ return "school_dot"})
+        .attr("data-school_code", function(d,i){ return d.properties.school_code;})
+        // .attr("onclick", "filterData($(this).data('school_code')); ")
+        .attr('onclick', function(d){return '$(\'.data-lister\').hide(); $(\'.data-lister[data-school_code="' + d.properties.school_code + '"]\').show(); $(\'html, body\').animate({scrollTop: $(\'#data-list\').offset().top}, 300);'})
         .attr( "stroke", "transparent" )
-        .attr( "fill", "#555" )
+        .attr( "fill", "#777" )
         .attr( "d", geoPath );
-      }
+   
+    }
 
-      // $('')
-      // .transition()
-      // .attr("r", 8)
-      // .attr("r", 50)
-      // .duration(1200);
+
+   
+
+   
+    
+
+      
+    
+
+     
+ 
+  
+
      
     } //nc_map
 
@@ -164,14 +170,10 @@ $(document).ready(function(){
       //BASIC BAR CHART - https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998
 
       function basic_bar(selector, isRawJson, json){
-        //"#bar-chart svg"
-        //restart_race.json
         var bar_svg = d3.select(selector),
         bar_margin = {top: 20, right: 20, bottom: 30, left: 100},
         bar_width = +bar_svg.attr("width") - bar_margin.left - bar_margin.right,
         bar_height = +bar_svg.attr("height") - bar_margin.top - bar_margin.bottom;
-      
-        // var tooltip = d3.select("body").append("div").attr("class", "toolTip");
           
         var bar_x = d3.scaleLinear().range([0, bar_width]);
         var bar_y = d3.scaleBand().range([bar_height, 0]);
@@ -185,7 +187,6 @@ $(document).ready(function(){
           
             data.sort(function(a, b) { return a.value - b.value; });
           
-            // bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
             bar_x.domain([0,1]);
             bar_y.domain(data.map(function(d) { return d.label; })).padding(0.1);
         
@@ -235,7 +236,6 @@ $(document).ready(function(){
       var data = json;
       data.sort(function(a, b) { return a.value - b.value; });
           
-            // bar_x.domain([0, d3.max(data, function(d) { return d.value; })]);
             bar_x.domain([0,1]);
             bar_y.domain(data.map(function(d) { return d.label; })).padding(0.1);
         
@@ -295,14 +295,11 @@ function line_chart(selector, file_name, isJson, json_data){
   
   var parseTime = d3.timeParse("%Y");
   
-  // var line_x = d3.scaleTime().range([0, line_width]),
   var line_x = d3.scaleLinear().range([0, line_width]),
   line_y = d3.scaleLinear().range([line_height, 0]),
   
   line_z = d3.scaleOrdinal(d3.schemeCategory10);
   
-  // console.log("line_width: " + line_height)
-
   var line = d3.line()
       .curve(d3.curveBasis)
       .x(function(d) { return line_x(d.date); })
@@ -339,7 +336,7 @@ function line_chart(selector, file_name, isJson, json_data){
         .attr("y", 6)
         .attr("dy", "0.71em")
         .attr("fill", "#000")
-        .text("Student Performance Grade");
+        .text("School Performance Score");
   
     var school = line_g.selectAll(".school")
       .data(schools)
@@ -348,7 +345,7 @@ function line_chart(selector, file_name, isJson, json_data){
   
     school.append("path")
         .attr("class", "line")
-        .attr("d", function(d) {  console.log("d.values: " + line(d.values)); return line(d.values); })
+        .attr("d", function(d) { return line(d.values); })
         .style("stroke", function(d) {  return line_z(d.id); });
 
     school.append("g")
@@ -409,6 +406,18 @@ function line_chart(selector, file_name, isJson, json_data){
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) {  return line_z(d.id); });
   
+  line_svg.append("text")
+    .text("statewide")
+    .attr("transform", "translate(" + (line_width+60) + "," + line_y(60) + ")")
+    .attr("dy", "0.35em")
+    .style("font", "10px sans-serif");
+
+  line_svg.append("text")
+    .text("school")
+    .attr("transform", "translate(" + (line_width+60) + "," + line_y(40) + ")")
+    .attr("dy", "0.35em")
+    .style("font", "10px sans-serif");
+  
   school.append("g")
     .selectAll(".dot")
       .data(function(d){
@@ -425,25 +434,8 @@ function line_chart(selector, file_name, isJson, json_data){
       })
       .attr("fill", "blue");
 
-  // school.append("text")
-  //     .datum(function(d) { console.log(d.values[0]); return {id: d.id, value: d.values[0]}; })
-  //     .attr("class", "label")
-  //     .attr("transform", function(d) { console.log(line_x(d.value.date) + " refresh"); return "translate(370," + parseInt(line_y(d.value.score)+10) + ")"; })
-  //     .attr("x", 3)
-  //     .attr("dy", "0.35em")
-  //     .style("font", "10px sans-serif")
-  //     .text(function(d) { return d.id; });
   }
   
-    // line_svg.append("g").selectAll("circle")
-    //     .data(data)
-    //     .enter().append("circle")
-    //     .attr("r", 2)
-    //     .attr("cx", function(d, i){ line_x(d.date);})
-    //     .attr("cy", function(d){ line_y(d.score);})
-    //     .attr("fill", "none")
-    //     .attr("stroke", "black");
-
 
       
       function type(d, _, columns) {
@@ -455,70 +447,11 @@ function line_chart(selector, file_name, isJson, json_data){
     } //line_chart
 
       //build those d3
-      basic_bar("#bar-chart #bar-1", false, "data/restart_race.json");
-      basic_bar("#bar-chart #bar-2", false, "data/race_state.json");
+      // basic_bar("#bar-chart #bar-1", false, "data/restart_race.json");
+      // basic_bar("#bar-chart #bar-2", false, "data/race_state.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
       nc_map("#highlight-map svg", "nc-counties.json", "", false);
-      // line_chart("#line-chart svg", "example.tsv", false, "");
 
-
-            //WAYPOINTS
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint1'),
-            //   handler: function () {
-      
-            //   }
-            // })
-      
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint1a'),
-            //   handler: function () {
-            //     $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
-      
-            //   }
-            // })
-      
-            //trigger the line chart
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint2'),
-            //   handler: function () {
-                
-            //     $('#percent-table-wrapper').toggleClass("shadow-drop-2-center");
-      
-            //   }
-            // })
-      
-            //trigger the bar chart
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint3'),
-            //   handler: function () {
-      
-            //   }
-            // })
-      
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint4'),
-            //   handler: function () {
-      
-
-      
-            //   }
-            // })
-      
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint5'),
-            //   handler: function () {
-      
-            //   }
-            // })
-      
-            // var waypoint = new Waypoint({
-            //   element: document.getElementById('waypoint6'),
-            //   handler: function () {
-            //   }
-            // })
-      
-      
             $('.map-hover-item').hover(function (e) {
               var thisFip = $(this).data('fip');
               if ($(this).data('fip2') != null) {
@@ -536,47 +469,20 @@ function line_chart(selector, file_name, isJson, json_data){
               for (i in ALL_DATA) {
               //1) build the data into the DOM
               var school = ALL_DATA[i];
-              console.log(school.official_school_name)
               var keys = Object.keys(school);
               //1a. create the data wrappers
-              $('#data-list').append('<div class="data-lister" id="waypoint_' + school.school_code + '"><div><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '<i id="caret_' + school.school_code + '" class="fa fa-caret-right" aria-hidden="true"></i></h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
+              $('#data-list').append('<div class="data-lister" id="lister_' + school.school_code + '"><div class="lister__title_wrapper"><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '</h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
       
               //1b. iterate thru the data keys
               for (j in keys) {
                 thisKey = keys[j];
-                $('#waypoint_' + school.school_code).attr('data-' + thisKey, school[thisKey]);
+                $('#lister_' + school.school_code).attr('data-' + thisKey, school[thisKey]);
               }
       
               $('#school-list').append('<p>' + school.official_school_name + '</p>');
       
-              build_section(school, "#waypoint_" + school.school_code);
-      
-      
-              window["waypoint_" + school.school_code] = new Waypoint({
-                element: document.getElementById("waypoint_" + school.school_code),
-                offset: 100,
-                handler: function () {
-                  var school = this.element.dataset;
-                  // Waypoint.disableAll();
-                  // Waypoint.enableAll();
-                  // $('.data-lister').removeClass("peek");
-                  // $('#waypoint_' + school.school_code).toggleClass("peek");
-                  
-                }
-              })
-
-              $('#open_' + school.school_code).click(function(){
-                var school_code = $(this).parent().data('school_code');
-                $(this).parent().parent().toggleClass("expand");
-                // console.log($('#caret_' + school_code).attr("class"));
-                $('#caret_' + school_code).toggleClass("fa-caret-right");
-                $('#caret_' + school_code).toggleClass("fa-caret-down");
-       
-                
-                Waypoint.refreshAll()
-
-              });
-      
+              build_section(school, "#lister_" + school.school_code);
+    
               
             } 
           } //build_scaffolding
@@ -588,31 +494,18 @@ function line_chart(selector, file_name, isJson, json_data){
       
               thisDiv = $(div_id);
 
-              //PEEK
-              // thisDiv.append('<div class="lister__peek"><p>This is a lil preview of the content</p></div>')
-      
-      
-              //TODO: style
-              // thisDiv.append('<h4 class="lister__school_district">' + school.district + '</h4>');
-
-                //TODO: add address label
-                thisDiv.append('<svg id="map_' + school.school_code + '" viewbox="0 100 960 300"></svg>');
-    
-              //TODO: style
-              //thisDiv.append('<h3 class="lister__subhead">Restart Status Notes</h3><h4 class="lister__approved_on">Approved for restart status on ' + school.board_approved + ', 2017.</h4>')
+              thisDiv.append('<h3 class="lister__map_descr">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart schools</span>.<br> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are slated to enter restart schools, which is about <span class="bold">' + (school.district_percent_restart*100) + ' percent</span> of the districts\' student population.</h3>');
       
             
               //selector, json_file, isSingle
               var coord = [school.longitude, school.latitude];
               nc_map("#map_" + school.school_code, "nc-counties.json", coord,  true)
-      
-              //TODO: elements of flex (build structure in a sheet to accept this)
+
       
               //TODO: student performance
-              thisDiv.append('<h3 class="lister__subhead">Student Performance</h3><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
+              thisDiv.append('<h3 class="lister__subhead">School Performance</h3><p class="lister__descr">Grades are based on your school’s achievement score on state tests (80 percent) and students\' academic growth (20 percent). The performance scores are converted to a 100-point scale, broken into 15-point increments.</p><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
 
-            
-              
+              // thisDiv.append('<table class="spg_table"><thead><tr><th scope="col">Year</th><th class="blue" scope="col">School</th><th class="orange" scope="col">Statewide</th></tr></thead><tbody><tr><td data-label="Year">2013</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2014</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2015</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2016</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr></tbody></table>');
 
               var thisSchoolCode = school.school_code;
              
@@ -627,7 +520,6 @@ function line_chart(selector, file_name, isJson, json_data){
 
               var spgschool = spg_restart[thisSchoolCode]
 
-              console.log(spgschool)
 
  
               var spg_data = [
@@ -678,9 +570,6 @@ function line_chart(selector, file_name, isJson, json_data){
 
               line_chart("#spg_" + school.school_code, "", true, spg_data);
 
-
-    
-              //TODO: maintain bar order here
               thisDiv.append('<h3 class="lister__subhead">Racial/Ethnic Breakdown</h3><svg id="race_' + school.school_code + '" width="400" height="200" viewbox="0 0 400 200"></svg>');
               var race_ethn = [
                 {"label": "Asian ", "value": school.asian_percentage},
@@ -692,13 +581,7 @@ function line_chart(selector, file_name, isJson, json_data){
 
               basic_bar("#race_" + school.school_code, true, race_ethn);
 
-
-      
-              //TODO: econom disadv (add the bar)
-              thisDiv.append('<h3 class="lister__subhead">Percentage Economically Disadvantaged</h3><h4 class="lister__econ_disadv">' + school.percent_economically_disadvantaged + ' of students are economically disadvantaged.</h4><div id="econdis_' + school.school_code + '"></div>');
-
-              // line_plot('#econdis_' + school.school_code,false,40,45);
-              
+              thisDiv.append('<h3 class="lister__subhead">Percentage Economically Disadvantaged</h3><h4 class="lister__econ_disadv">' + school.percent_economically_disadvantaged + ' of students are economically disadvantaged.</h4><div id="econdis_' + school.school_code + '"></div>');              
 
       
             }

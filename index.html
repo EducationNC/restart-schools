@@ -15,7 +15,8 @@
   <script src="js/d3.v4.min.js" charset="utf-8"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
   <script src="https://d3js.org/d3-queue.v2.min.js"></script>
-  <script srce="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.1.0/d3-annotation.independent.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.1.0/d3-annotation.independent.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pym/1.3.2/p.v1.m.js"></script>
 
   <script src="data/restart-schools-2.geojson"></script>
   <script src="data/basic_data.js"></script>
@@ -32,28 +33,15 @@
 </head>
 
 <body>
-    <!-- <input id="inp_school" type="text">
-     -->
 
-  <!-- <header>
-    <img src="images/header.jpg" alt="">
-    <p style="margin-top:20px;">THIS IS A COMPELLING LEDE. Donec euismod metus vel sem viverra, nec dignissim purus fringilla. Donec suscipit congue nunc,
-        sit amet ultricies mi vestibulum dapibus. Ut et consectetur eros. Phasellus turpis nibh, placerat a neque sed, blandit
-        aliquam quam. Vivamus hendrerit malesuada luctus. Nulla gravida orci non fringilla elementum. Praesent nisi metus, vulputate
-        in purus et, pulvinar posuere tellus. Nulla facilisi. Quisque quis orci nec tortor dignissim pharetra ac nec orci. Mauris
-        aliquet, metus id ultrices sagittis, neque dolor efficitur odio, vel ultricies neque elit eu libero. In suscipit libero
-        purus, id rhoncus arcu venenatis in</p>
-      </header> -->
-  <div id="top-explorer">
+  <!-- <div id="top-explorer">
     
-    <!-- <div id="top-sidebar"> -->
+
         <div>
             <h1 id="waypoint1">Restart Schools Graphic</h1>
             <p>There are 103 schools approved for restart status in North Carolina.</p>
           </div>
-          <div id="schools-map">
-              <svg viewbox="0 100 960 300"></svg>
-          </div>
+         
           <div id="waypoint1a">
             <p>Most restart schools are located in
               <span data-fip="183" class="map-link map-hover-item">Wake</span>,
@@ -61,7 +49,7 @@
               <span data-fip="159" class="map-link map-hover-item">Rowan-Salisbury</span> school districts. When adjusted for population,
               <span data-fip="185" class="map-link map-hover-item">Warren County Public Schools</span> has the highest proportion of students in restart schools, with
               about 68.5 percent of their students in restart schools.</p>
-            <!-- <div id="table-map-wrap"> -->
+
             <div id="percent-table-wrapper">
                 <h3>Percentage of students in restart schools by county
                     <span class="table-instr">Hover or click on a table row to see that county on the map.</span>
@@ -73,16 +61,13 @@
              
             </table>
           </div>
-          <!-- <div id="highlight-map">
-              <svg width="960" height="500"></svg>
-          </div> -->
+
             <p id="waypoint2"></p>
            
-          <!-- </div> -->
-          <!--#table-map-wrap-->
+
          
         </div>
-        <!--#waypoint1a-->
+
 
         <div id="bar-chart" class="story">
             <p>Racial/Ethnic Makeup of all schools:</p>
@@ -90,38 +75,9 @@
             <p>Racial/Ethnic Makeup of restart schools:</p>
             <svg id="bar-2" width="400" height="200"></svg>
           </div>
-        
-          <!-- <div>
-            <p>(Explanation of how school performance grades work)</p>
-            </div>
-            <div>
-            <p>The median school performance grade (SPG) of restart schools in the past three school years is 47. The median SPG of
-              all schools in the state in the past three schools years is 62.</p>
-          </div>
-          <div id="waypoint3"></div>
-          <div>
-            <p>show: a bar graph like the one in my original sketch showing racial/ethnic breakdown, but with two sets of bars to compare
-              statewide vs restart text: (some sentence describing an interesting pullout from this data)</p>
-          </div>
 
-        
-          <div id="waypoint5">
-            <p> The median percentage of economically disadvantaged students in the state is between 60 and 65 percent.
-            </p>
+</div> -->
 
-          </div>
-          <div id="scale2">
-          </div>
-        
-          <div id="waypoint6">
-            <p>The median percentage of economically disadvantaged students in restart schools is greater than 90%.</p>
-          </div>
-          <div id="scale3">
-            </div> -->
-    <!-- </div> -->
-
-</div><!--/#top-explorer-->
-  <hr id="waypoint6">
 
   <div id="bottom-title-wrapper">
      
@@ -130,16 +86,24 @@
   
 <div id="bottom-explorer">
 
+  
+    
 
   <!-- <div class="flex-center">
     <h1>Explore individual schools</h1>
   </div> -->
   <h3 class="bottom-header">Explore individual schools</h3>
-  <!-- <div id="the-basics">
-      <input class="typeahead form-control" type="text" placeholder="Schools">
-    </div> -->
+  <p>Select a school on the map or use the search bar.</p>
+  <div id="schools-map">
+    <svg viewbox="0 100 960 300"></svg>
+</div>
+<p id="inp_instr">Click outside of the text box to complete your search</p>
+  <div id="the-basics">
+      <input class="typeahead form-control" type="text" placeholder="Search for a Restart School">
+    </div>
+    
 
-
+<a name="data-list"></a>
   <div id="data-list"></div>
 
 </div> <!--/#bottom-explorer -->
@@ -190,9 +154,41 @@
         source: substringMatcher(schools)
       });
 
+      $('#the-basics .typeahead').focusin(function(){
+        $('#inp_instr').show();
+      });
+
+      $('#the-basics .typeahead').focusout(function(){
+        $('#inp_instr').hide();
+      });
+
       $('#the-basics .typeahead').change(function(){
-        console.log($(this).val())
+        //console.log($(this).val())
+        $('.data-lister').hide();
+        
+        $('.data-lister[data-official_school_name="' + $(this).val() + '"]').show();
+        // if ( $('.data-lister').data('official_school_name') == $(this).val() ){
+        //   console.log('match')
+        // }
+         
+        
+
+       
+        // data-official_school_name
       })
+
+       $('.school').click(function(){
+              console.log('click')
+              $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
+              console.log($(this).data('school_code'));
+              $('.data-lister').hide();
+              
+              $('.data-lister[data-school_code="' + $(this).data('school_code') + '"]').show();
+            })
+
+            
+
+
 
 
     }); //doc ready
