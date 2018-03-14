@@ -38,6 +38,9 @@ h3, h4{
   fill:#561843;
 }
 
+.input-pads{
+  padding-bottom:300px;
+}
 
 /* d3 */
 #append {

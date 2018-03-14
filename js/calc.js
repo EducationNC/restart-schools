@@ -47,12 +47,16 @@ $(document).ready(function(){
       pymChild.sendHeight()
 
       $('#the-basics .typeahead').focusin(function(){
+        pymChild.sendHeight()
         $('#inp_instr').show();
+        $('#the-basics').toggleClass("input-pads");
         pymChild.sendHeight()
       });
 
       $('#the-basics .typeahead').focusout(function(){
+        pymChild.sendHeight()
         $('#inp_instr').hide();
+        $('#the-basics').toggleClass("input-pads");
         pymChild.sendHeight()
       });
 
@@ -65,7 +69,7 @@ $(document).ready(function(){
   //   $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
   // }
 
-  $('#the-basics .typeahead').click(function(){ pymChild.sendHeight() })
+  
 
   $('#the-basics .typeahead').change(function(){
     //console.log($(this).val())
