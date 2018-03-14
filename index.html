@@ -113,11 +113,14 @@
 
 
 <script src="js/typeahead.jquery.min.js"></script>
-  <script type="text/javascript" src="js/calc.js"></script>
+  
 
 
   <script type="text/javascript">
     $(document).ready(function () {
+
+        var pymChild = new pym.Child();
+
 
       var substringMatcher = function(strs) {
         return function findMatches(q, cb) {
@@ -165,30 +168,9 @@
         $('#inp_instr').hide();
       });
 
-      $('#the-basics .typeahead').change(function(){
-        //console.log($(this).val())
-        $('.data-lister').hide();
-        
-        $('.data-lister[data-official_school_name="' + $(this).val() + '"]').show();
-        // if ( $('.data-lister').data('official_school_name') == $(this).val() ){
-        //   console.log('match')
-        // }
-         
-        
+      
 
-       
-        // data-official_school_name
-      })
-
-       $('.school').click(function(){
-              console.log('click')
-              $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
-              console.log($(this).data('school_code'));
-              $('.data-lister').hide();
-              
-              $('.data-lister[data-school_code="' + $(this).data('school_code') + '"]').show();
-            })
-
+ 
             
 
 
@@ -198,8 +180,7 @@
 
 
   </script>
-  <!-- waypoints -->
-  <script src="js/jquery.waypoints.min.js"></script>
+ <script type="text/javascript" src="js/calc.js"></script>
 
 </body>
 

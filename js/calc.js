@@ -1,12 +1,48 @@
 $(document).ready(function(){
 
-  function filterData(school_code){
+  // function filterData(school_code){
               
-    $('.data-lister').hide();
+  //   $('.data-lister').hide();
     
-    $('.data-lister[data-school_code="' + school_code + '"]').show();
+  //   $('.data-lister[data-school_code="' + school_code + '"]').show();
 
-    $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
+  //   $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
+  // }
+
+  $('#the-basics .typeahead').change(function(){
+    //console.log($(this).val())
+    $('.data-lister').hide();
+
+    find_school($(this).val(), null);
+    
+    //$('.data-lister[data-official_school_name="' + $(this).val() + '"]').show();
+ 
+    // data-official_school_name
+  })
+
+  function find_school(selected_school_name, selected_school_code){
+    console.log('find')
+    console.log(typeof(selected_school_name))
+
+    
+    
+    for (i in ALL_DATA){
+      var school = ALL_DATA[i];
+
+      if (selected_school_name){
+        if (school.official_school_name == selected_school_name){
+          build_section(school, "#lister_" + school.school_code)
+         }
+      }
+
+      if (selected_school_code){
+        if (school.school_code == selected_school_code){
+          build_section(school, "#lister_" + school.school_code)
+         }
+      }
+      
+      
+    }
   }
 
   
@@ -143,12 +179,16 @@ $(document).ready(function(){
         .attr("class", function(d,i){ return "school_dot"})
         .attr("data-school_code", function(d,i){ return d.properties.school_code;})
         // .attr("onclick", "filterData($(this).data('school_code')); ")
-        .attr('onclick', function(d){return '$(\'.data-lister\').hide(); $(\'.data-lister[data-school_code="' + d.properties.school_code + '"]\').show(); $(\'html, body\').animate({scrollTop: $(\'#data-list\').offset().top}, 300);'})
+        // .attr('onclick', function(d){return '$(\'.data-lister\').hide(); $(\'.data-lister[data-school_code="' + d.properties.school_code + '"]\').show(); $(\'html, body\').animate({scrollTop: $(\'#data-list\').offset().top}, 300);'})
+       // .attr('onclick', function(d){return "console.log('dot click'); $('.data-lister').hide(); top.find_school($(this).data('school_code'));" })
+       .on("click", function(d){console.log('dot click'); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
         .attr( "stroke", "transparent" )
         .attr( "fill", "#777" )
         .attr( "d", geoPath );
    
     }
+
+  
 
 
    
@@ -450,6 +490,7 @@ function line_chart(selector, file_name, isJson, json_data){
               $('.fip_' + thisFip).toggleClass('county-highlight');
       
             });
+
       
             //TODO: POPULATE THE BOTTOM EXPLORER
       
@@ -475,10 +516,26 @@ function line_chart(selector, file_name, isJson, json_data){
             } 
           } //build_scaffolding
       
-            build_scaffolding();
+          // build_scaffolding();
+
+           
    
       
             function build_section(school, div_id){
+
+              console.log("build")
+              
+              var keys = Object.keys(school);
+              //1a. create the data wrappers
+              $('#data-list').append('<div class="data-lister" id="lister_' + school.school_code + '"><div class="lister__title_wrapper"><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '</h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
+      
+              //1b. iterate thru the data keys
+              for (j in keys) {
+                thisKey = keys[j];
+                $('#lister_' + school.school_code).attr('data-' + thisKey, school[thisKey]);
+              }
+      
+              $('#school-list').append('<p>' + school.official_school_name + '</p>');
       
               thisDiv = $(div_id);
 
