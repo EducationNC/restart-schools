@@ -7,7 +7,7 @@ $(document).ready(function(){
   }
 
 
-  var pymChild = new pym.Child();
+      var pymChild = new pym.Child();
 
       pymChild.sendHeight()
 
@@ -43,6 +43,8 @@ $(document).ready(function(){
         name: 'schools',
         source: substringMatcher(schools)
       });
+
+      pymChild.sendHeight()
 
       $('#the-basics .typeahead').focusin(function(){
         $('#inp_instr').show();
