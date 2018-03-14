@@ -65,6 +65,8 @@ $(document).ready(function(){
   //   $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);
   // }
 
+  $('#the-basics .typeahead').click(function(){ pymChild.sendHeight() })
+
   $('#the-basics .typeahead').change(function(){
     //console.log($(this).val())
     $('.data-lister').hide();
