@@ -7,8 +7,8 @@ A data application displaying information about approved restart schools in Nort
 ## To Do
 - add county-by-county zoom on the map. https://bl.ocks.org/mbostock/2206590
 - get individual pull-outs for: Barwell, Haw River, Goldsboro High, Coker-Wimberly
-- only show results upon search
 - list out where all the data sources for the application are
+- check rounding on percentages
 
 ## Getting Started
 
