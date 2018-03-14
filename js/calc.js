@@ -1,5 +1,59 @@
 $(document).ready(function(){
 
+  var schools = [];
+
+  for (i in ALL_DATA){
+    schools.push(ALL_DATA[i].official_school_name);
+  }
+
+
+  var pymChild = new pym.Child();
+
+      pymChild.sendHeight()
+
+
+      var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+          var matches, substringRegex;
+
+          // an array that will be populated with substring matches
+          matches = [];
+
+          // regex used to determine if a string contains the substring `q`
+          substrRegex = new RegExp(q, 'i');
+
+          // iterate through the pool of strings and for any string that
+          // contains the substring `q`, add it to the `matches` array
+          $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+              matches.push(str);
+            }
+          });
+
+          cb(matches);
+        };
+      };
+
+      $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'schools',
+        source: substringMatcher(schools)
+      });
+
+      $('#the-basics .typeahead').focusin(function(){
+        $('#inp_instr').show();
+        pymChild.sendHeight()
+      });
+
+      $('#the-basics .typeahead').focusout(function(){
+        $('#inp_instr').hide();
+        pymChild.sendHeight()
+      });
+
   // function filterData(school_code){
               
   //   $('.data-lister').hide();
@@ -41,6 +95,7 @@ $(document).ready(function(){
          }
       }
       
+      pymChild.sendHeight()
       
     }
   }
