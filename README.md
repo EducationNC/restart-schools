@@ -9,6 +9,7 @@ A data application displaying information about approved restart schools in Nort
 - get individual pull-outs for: Barwell, Haw River, Goldsboro High, Coker-Wimberly
 - list out where all the data sources for the application are
 - check rounding on percentages
+- consider removing purple line
 
 ## Getting Started
 
