@@ -244,7 +244,7 @@ $(document).ready(function(){
         // .attr("onclick", "filterData($(this).data('school_code')); ")
         // .attr('onclick', function(d){return '$(\'.data-lister\').hide(); $(\'.data-lister[data-school_code="' + d.properties.school_code + '"]\').show(); $(\'html, body\').animate({scrollTop: $(\'#data-list\').offset().top}, 300);'})
        // .attr('onclick', function(d){return "console.log('dot click'); $('.data-lister').hide(); top.find_school($(this).data('school_code'));" })
-       .on("click", function(d){console.log('dot click'); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
+       .on("click", function(d){$('#the-basics .typeahead').val(''); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
         .attr( "stroke", "transparent" )
         .attr( "fill", "#777" )
         .attr( "d", geoPath );
