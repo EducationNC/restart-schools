@@ -606,7 +606,7 @@ function line_chart(selector, file_name, isJson, json_data){
       
               thisDiv = $(div_id);
 
-              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart school(s)</span>.</h3><h3 class="lister__map_descr school-perf-title"> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100).toPrecision(2) + ' percent</span> of the district\'s student population.</h3>');
+              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart school(s)</span>. <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100).toPrecision(2) + ' percent</span> of the district\'s student population. <span class="bold">' + school.percent_economically_disadvantaged + '</span> of students are economically disadvantaged.</h3>');
       
             
               //selector, json_file, isSingle
@@ -687,9 +687,7 @@ function line_chart(selector, file_name, isJson, json_data){
                 {"label": "Two or More Races ", "value": school.two_percentage}
               ]
 
-              basic_bar("#race_" + school.school_code, true, race_ethn);
-
-              thisDiv.append('<h3 class="lister__subhead">Percentage Economically Disadvantaged</h3><h4 class="lister__econ_disadv">' + school.percent_economically_disadvantaged + ' of students are economically disadvantaged.</h4><div id="econdis_' + school.school_code + '"></div>');              
+              basic_bar("#race_" + school.school_code, true, race_ethn);           
 
       
             }

@@ -32,58 +32,50 @@
   <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#school_search" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+
 </head>
 
 <body>
 
-  <!-- <div id="top-explorer">
-    
+ 
 
-        <div>
-            <h1 id="waypoint1">Restart Schools Graphic</h1>
-            <p>There are 103 schools approved for restart status in North Carolina.</p>
-          </div>
-         
-          <div id="waypoint1a">
-            <p>Most restart schools are located in
-              <span data-fip="183" class="map-link map-hover-item">Wake</span>,
-              <span data-fip="119" class="map-link map-hover-item" >Charlotte-Mecklenburg</span>, and
-              <span data-fip="159" class="map-link map-hover-item">Rowan-Salisbury</span> school districts. When adjusted for population,
-              <span data-fip="185" class="map-link map-hover-item">Warren County Public Schools</span> has the highest proportion of students in restart schools, with
-              about 68.5 percent of their students in restart schools.</p>
+ 
 
-            <div id="percent-table-wrapper">
-                <h3>Percentage of students in restart schools by county
-                    <span class="table-instr">Hover or click on a table row to see that county on the map.</span>
-                </h3>
-            <table class="table percent-table">  
-                <th class="table-text">School district</th>
-                <th class="table-text percent-students">Percent</th>
-              </tr>
-             
-            </table>
-          </div>
-
-            <p id="waypoint2"></p>
-           
-
-         
-        </div>
-
-
-        <div id="bar-chart" class="story">
-            <p>Racial/Ethnic Makeup of all schools:</p>
-            <svg id="bar-1" width="400" height="200"></svg>
-            <p>Racial/Ethnic Makeup of restart schools:</p>
-            <svg id="bar-2" width="400" height="200"></svg>
-          </div>
-
-</div> -->
-
-
-
-
-  
 <div id="pym-wrapper" >
 <div id="bottom-explorer">
 
@@ -101,13 +93,17 @@
 <p id="inp_instr">Click outside of the text box to complete your search</p>
   <div id="the-basics">
       <input class="typeahead form-control" type="text" placeholder="Search for a Restart School">
-    </div>
-    
+  </div>
+
+<!-- <div class="ui-widget">
+  <input class="form-control" id="school_search" type="text" placeholder="Search for a Restart School">
+</div>
+     -->
 
 <a name="data-list"></a>
   <div id="data-list"></div>
 
-  <p style="font-size:.6em;">Graphic by Lindsay Carbonell/EducationNC</p>
+  <p style="font-size:.5em;">Graphic by Lindsay Carbonell/EducationNC</p>
 </div> <!--/#bottom-explorer -->
 
 
