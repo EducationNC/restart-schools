@@ -186,9 +186,8 @@ $(document).ready(function(){
   line_plot("#scale2", false, 60, 65);
   line_plot("#scale3", false, 90, 100); 
 
-  function nc_map(selector, json_file, coord, isSingle){
+  function nc_map(selector, json_file, coord){
 
-    //TODO: figure out how to size this shit: https://stackoverflow.com/questions/9566792/scale-svg-to-container-without-mask-crop
     var schools_width = $(selector).width()
     schools_height = $(selector).height();
 
@@ -210,45 +209,96 @@ $(document).ready(function(){
 
       function ready(error, counties){
 
+        //var g = schools_svg.append("g");
+
+        //g.on("click", reset);
+
         var background = schools_svg.append("g");
-        var foreground = schools_svg.append("g")
+        var foreground = schools_svg.append("g");
+        //var active = d3.select(null);
+
+        
 
         var schools = schools_svg.append( "g" )
           .attr("x", 0)
           .attr("y", 0);
+          //for zoom
+        //   .on("click", stopped, true);
 
-    
-     
+        // var zoom = d3.zoom()
+        //   .scaleExtent([1,8])
+        //   .on("zoom", zoomed);
+        
+        // schools_svg
+        //   .call(zoom);
 
         background.append("g")
-        .attr("x", 0)
-        .attr("y", 0)
-        .selectAll("path")
-        .data( topojson.feature(counties, counties.objects.counties).features)
-        .enter()
-        .append("path")
-        .attr( "d", geoPath )
-        .attr("class",function(d){
-          return "fip_" + d.properties.COUNTYFP + " county";
-        })
-        .attr( "fill", function(d){
-            return "#5656";
-        }); 
+          .attr("x", 0)
+          .attr("y", 0)
+          .selectAll("path")
+          .data( topojson.feature(counties, counties.objects.counties).features)
+          .enter()
+          .append("path")
+          .attr( "d", geoPath )
+          .attr("class",function(d){
+            return "fip_" + d.properties.COUNTYFP + " county";
+          })
+          .attr( "fill", function(d){
+              return "#5656";
+          });
+          //for zoom
+          //.on("click", clicked); 
 
         foreground.selectAll( "path" )
-        .data( restartschools.features )
-        .enter()
-        .append( "path" )
-        .attr("class", function(d,i){ return "school_dot"})
-        .attr("data-school_code", function(d,i){ return d.properties.school_code;})
-        // .attr("onclick", "filterData($(this).data('school_code')); ")
-        // .attr('onclick', function(d){return '$(\'.data-lister\').hide(); $(\'.data-lister[data-school_code="' + d.properties.school_code + '"]\').show(); $(\'html, body\').animate({scrollTop: $(\'#data-list\').offset().top}, 300);'})
-       // .attr('onclick', function(d){return "console.log('dot click'); $('.data-lister').hide(); top.find_school($(this).data('school_code'));" })
-       .on("click", function(d){$('#the-basics .typeahead').val(''); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
-        .attr( "stroke", "transparent" )
-        .attr( "fill", "#777" )
-        .attr( "d", geoPath );
-   
+          .data( restartschools.features )
+          .enter()
+          .append( "path" )
+          .attr("class", function(d,i){ return "school_dot";})
+          .attr("data-school_code", function(d,i){ return d.properties.school_code;})
+        .on("click", function(d){$('#the-basics .typeahead').val(''); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
+          .attr( "stroke", "transparent" )
+          .attr( "fill", "#777" )
+          .attr( "d", geoPath );
+
+      
+      /***for zoom***/
+          // function clicked(d) {
+          //   if (active.node() === this) return reset();
+          //   active.classed("active", false);
+          //   active = d3.select(this).classed("active", true);
+
+          //   var bounds = geoPath.bounds(d),
+          //       dx = bounds[1][0] - bounds[0][0],
+          //       dy = bounds[1][1] - bounds[0][1],
+          //       x = (bounds[0][0] + bounds[1][0]) / 2,
+          //       y = (bounds[0][1] + bounds[1][1]) / 2,
+          //       scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / schools_width, dy / schools_height))),
+          //       translate = [schools_width / 2 - scale * x, schools_height / 2 - scale * y];
+
+          //   schools_svg.transition()
+          //       .duration(750)
+          //       .call( zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) ); 
+          //     }
+
+          //     function reset() {
+          //       active.classed("active", false);
+          //       active = d3.select(null);
+              
+          //       schools_svg.transition()
+          //           .duration(750)
+          //           .call( zoom.transform, d3.zoomIdentity );
+          //     }
+
+          // function zoomed() {
+          //   g.style("stroke-width", 1.5 / d3.event.scale + "px");
+          //   g.attr("transform", d3.event.transform);
+          // }
+
+          // function stopped() {
+          //   if (d3.event.defaultPrevented) d3.event.stopPropagation();
+          // }
+
+        
     }
 
   
@@ -526,9 +576,7 @@ function line_chart(selector, file_name, isJson, json_data){
       .attr("fill", "blue");
 
   }
-  
-
-      
+   
       function type(d, _, columns) {
         // d.date = parseTime(d.date);
         d.date = d.date;
@@ -538,51 +586,7 @@ function line_chart(selector, file_name, isJson, json_data){
     } //line_chart
 
       //build those d3
-      // basic_bar("#bar-chart #bar-1", false, "data/restart_race.json");
-      // basic_bar("#bar-chart #bar-2", false, "data/race_state.json");
       nc_map("#schools-map svg", "nc-counties.json", "", false);
-      nc_map("#highlight-map svg", "nc-counties.json", "", false);
-
-            $('.map-hover-item').hover(function (e) {
-              var thisFip = $(this).data('fip');
-              if ($(this).data('fip2') != null) {
-                thisFip2 = $(this).data('fip2');
-                $('.fip_' + thisFip2).toggleClass('county-highlight');
-              }
-      
-              $('.fip_' + thisFip).toggleClass('county-highlight');
-      
-            });
-
-      
-            //TODO: POPULATE THE BOTTOM EXPLORER
-      
-            function build_scaffolding(){
-              for (i in ALL_DATA) {
-              //1) build the data into the DOM
-              var school = ALL_DATA[i];
-              var keys = Object.keys(school);
-              //1a. create the data wrappers
-              $('#data-list').append('<div class="data-lister" id="lister_' + school.school_code + '"><div class="lister__title_wrapper"><h2 class="lister__school_name" id="open_' + school.school_code + '">' + school.official_school_name + '</h2><h4 class="lister__school_district">' + school.district + '</h4></div></div>');
-      
-              //1b. iterate thru the data keys
-              for (j in keys) {
-                thisKey = keys[j];
-                $('#lister_' + school.school_code).attr('data-' + thisKey, school[thisKey]);
-              }
-      
-              $('#school-list').append('<p>' + school.official_school_name + '</p>');
-      
-              build_section(school, "#lister_" + school.school_code);
-    
-              
-            } 
-          } //build_scaffolding
-      
-          // build_scaffolding();
-
-           
-   
       
             function build_section(school, div_id){
 
@@ -602,7 +606,7 @@ function line_chart(selector, file_name, isJson, json_data){
       
               thisDiv = $(div_id);
 
-              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart schools</span>.</h3><h3 class="lister__map_descr"> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100) + ' percent</span> of the district\'s student population.</h3>');
+              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart school(s)</span>.</h3><h3 class="lister__map_descr"> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100) + ' percent</span> of the district\'s student population.</h3>');
       
             
               //selector, json_file, isSingle
@@ -612,8 +616,6 @@ function line_chart(selector, file_name, isJson, json_data){
       
               //TODO: student performance
               thisDiv.append('<h3 class="lister__subhead">School Performance</h3><p class="lister__descr">Grades are based on the school’s achievement score on state tests (80 percent) and students\' academic growth (20 percent). The performance scores are converted to a 100-point scale.</p><svg id="spg_' + school.school_code + '" width="500" height="300" viewbox="0 0 500 300"></svg>');
-
-              // thisDiv.append('<table class="spg_table"><thead><tr><th scope="col">Year</th><th class="blue" scope="col">School</th><th class="orange" scope="col">Statewide</th></tr></thead><tbody><tr><td data-label="Year">2013</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2014</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2015</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr><tr><td data-label="Year">2016</td><td class="blue" data-label="School Performance Score">56</td><td class="orange" data-label="Statewide School Performance Score">56</td></tr></tbody></table>');
 
               var thisSchoolCode = school.school_code;
              
@@ -627,8 +629,6 @@ function line_chart(selector, file_name, isJson, json_data){
         
 
               var spgschool = spg_restart[thisSchoolCode]
-
-
  
               var spg_data = [
                 {
