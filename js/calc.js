@@ -606,7 +606,7 @@ function line_chart(selector, file_name, isJson, json_data){
       
               thisDiv = $(div_id);
 
-              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart school(s)</span>.</h3><h3 class="lister__map_descr"> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100) + ' percent</span> of the district\'s student population.</h3>');
+              thisDiv.append('<h3 class="lister__map_descr" style="grid-row:2;">' + school.official_school_name + ' is located in the ' + school.district + ' district, which contains a total of <span class="bold">' + school.district_restart_count + ' restart school(s)</span>.</h3><h3 class="lister__map_descr school-perf-title"> <span class="bold">' + school.district_restart_pop + ' students</span> in this county are in schools approved for restart, which is about <span class="bold">' + (school.district_percent_restart*100).toPrecision(2) + ' percent</span> of the district\'s student population.</h3>');
       
             
               //selector, json_file, isSingle
