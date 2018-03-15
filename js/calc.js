@@ -7,6 +7,33 @@ $(document).ready(function(){
   }
 
 
+  $( "#school_search" ).autocomplete({
+    source: schools
+  });
+
+  $( "#school_search" ).autocomplete({
+    minLength: 0,
+    source: schools,
+    focus: function( event, ui ) {
+      $( "#school_search" ).val( ui.item.label );
+      return false;
+    },
+    select: function( event, ui ) {
+      $('.data-lister').empty();
+      var selected_school_name = ui.item.label
+      find_school(selected_school_name, null)
+
+      return false;
+    }
+  })
+  .autocomplete( "instance" )._renderItem = function( ul, item ) {
+    return $( "<li>" )
+      .append( "<div>" + item.label + "</div>" )
+      .appendTo( ul );
+  };
+
+
+
       var pymChild = new pym.Child();
 
       pymChild.sendHeight()
@@ -255,7 +282,7 @@ $(document).ready(function(){
           .append( "path" )
           .attr("class", function(d,i){ return "school_dot";})
           .attr("data-school_code", function(d,i){ return d.properties.school_code;})
-        .on("click", function(d){$('#the-basics .typeahead').val(''); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
+        .on("click", function(d){$('#school_search').val(''); $('.data-lister').hide(); find_school(null,d.properties.school_code); $('html, body').animate({scrollTop: $('#data-list').offset().top}, 300);})
           .attr( "stroke", "transparent" )
           .attr( "fill", "#777" )
           .attr( "d", geoPath );
