@@ -73,20 +73,7 @@ $(document).ready(function(){
 
       pymChild.sendHeight()
 
-      $('#the-basics .typeahead').focusin(function(){
-        pymChild.sendHeight()
-        $('#inp_instr').show();
-        $('#the-basics').toggleClass("input-pads");
-        pymChild.sendHeight()
-      });
-
-      $('#the-basics .typeahead').focusout(function(){
-        pymChild.sendHeight()
-        $('#inp_instr').hide();
-        $('#the-basics').toggleClass("input-pads");
-        pymChild.sendHeight()
-      });
-
+     
   // function filterData(school_code){
               
   //   $('.data-lister').hide();
