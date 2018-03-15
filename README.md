@@ -3,11 +3,8 @@
 A data application displaying information about approved restart schools in North Carolina as of December 2017.
 
 ## To Do
-- add county-by-county zoom on the map. https://bl.ocks.org/mbostock/2206590
-- get individual pull-outs for: Barwell, Haw River, Goldsboro High, Coker-Wimberly
-- list out where all the data sources for the application are
-- check rounding on percentages
-- consider removing purple line
+- add county-by-county zoom on the map. https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2
+- fix search click thing
 
 ## Getting Started
 
